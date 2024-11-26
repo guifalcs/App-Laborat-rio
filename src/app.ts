@@ -10,4 +10,4 @@ const parametrosPorGrupo = new ParametrosPorGrupo()
 
 parametrosPorGrupo.processarDados(dadosTabela)
 
-console.log(parametrosPorGrupo.getTopPPG())
+console.log(parametrosPorGrupo.getTopGrupos(dadosTabela))
