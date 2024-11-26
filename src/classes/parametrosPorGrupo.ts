@@ -1,10 +1,13 @@
 export default class ParametrosPorGrupo {
+
+    //Atributos
     porcentagemParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
       {};
     quantidadeParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
       {};
-    grupos: Array<String> = []
+    grupos: Array<String> = [];
   
+    //Métodos
     processarDados(registros: Array<dadosTabela>) {
       let gp: Array<GP> = [];
   
@@ -98,12 +101,52 @@ export default class ParametrosPorGrupo {
     }
 
     getQPG(){
-        return this.porcentagemParametrosPorGrupo
+        return this.porcentagemParametrosPorGrupo;
     }
 
     getGrupos(){
         return this.grupos;
     }
 
+    getTopPPG() {
+        const topPPG: { [key: string]: { [key: string]: number } } = {};
+    
+        // Iterar pelos grupos
+        for (const grupo in this.porcentagemParametrosPorGrupo) {
+          const parametros = this.porcentagemParametrosPorGrupo[grupo];
+    
+          // Obter os 10 primeiros parâmetros em ordem decrescente
+          const topParametros = Object.entries(parametros)
+            .slice(0, 10) // Selecionar os 10 primeiros
+            .reduce((acc, [parametro, percentage]) => {
+              acc[parametro] = percentage;
+              return acc;
+            }, {} as { [key: string]: number });
+    
+          // Adicionar ao resultado final
+          topPPG[grupo] = topParametros;
+        }
+    
+        return topPPG;
+      }
+
+      getTopQPG() {
+        const topQPG: { [key: string]: { [key: string]: number } } = {};
+    
+        for (const grupo in this.quantidadeParametrosPorGrupo) {
+          // Ordena os parâmetros do grupo em ordem decrescente de quantidade e seleciona os 10 primeiros
+          const topParametros = Object.entries(this.quantidadeParametrosPorGrupo[grupo])
+            .sort(([, countA], [, countB]) => countB - countA)
+            .slice(0, 10)
+            .reduce((acc, [parametro, count]) => {
+              acc[parametro] = count;
+              return acc;
+            }, {} as { [key: string]: number });
+    
+          topQPG[grupo] = topParametros;
+        }
+    
+        return topQPG;
+      }
 
   }
