@@ -111,19 +111,16 @@ export default class ParametrosPorGrupo {
     getTopPPG() {
         const topPPG: { [key: string]: { [key: string]: number } } = {};
     
-        // Iterar pelos grupos
         for (const grupo in this.porcentagemParametrosPorGrupo) {
           const parametros = this.porcentagemParametrosPorGrupo[grupo];
     
-          // Obter os 10 primeiros parâmetros em ordem decrescente
           const topParametros = Object.entries(parametros)
-            .slice(0, 10) // Selecionar os 10 primeiros
+            .slice(0, 10) 
             .reduce((acc, [parametro, percentage]) => {
               acc[parametro] = percentage;
               return acc;
             }, {} as { [key: string]: number });
     
-          // Adicionar ao resultado final
           topPPG[grupo] = topParametros;
         }
     
@@ -134,7 +131,7 @@ export default class ParametrosPorGrupo {
         const topQPG: { [key: string]: { [key: string]: number } } = {};
     
         for (const grupo in this.quantidadeParametrosPorGrupo) {
-          // Ordena os parâmetros do grupo em ordem decrescente de quantidade e seleciona os 10 primeiros
+            
           const topParametros = Object.entries(this.quantidadeParametrosPorGrupo[grupo])
             .sort(([, countA], [, countB]) => countB - countA)
             .slice(0, 10)
