@@ -95,7 +95,7 @@ export default class ParametrosPorGrupo {
     }
 
     getQPG(){
-        return this.porcentagemParametrosPorGrupo;
+        return this.quantidadeParametrosPorGrupo;
     }
 
     getGrupos(){
@@ -142,30 +142,30 @@ export default class ParametrosPorGrupo {
 
     getTopGrupos(registros: Array<dadosTabela>){
         
-  const gruposContagem: { [key: string]: number } = {};
+        const gruposContagem: { [key: string]: number } = {};
 
-  registros.forEach((registro) => {
-        const grupo = registro["Grupo"]; 
-        if (grupo) {
+        registros.forEach((registro) => {
+              const grupo = registro["Grupo"]; 
+              if (grupo) {
 
-        if (gruposContagem[grupo]) {
-            gruposContagem[grupo]++;
+              if (gruposContagem[grupo]) {
+                  gruposContagem[grupo]++;
 
-        } else {
-            gruposContagem[grupo] = 1;
-        }
-        }
-    });
+              } else {
+                  gruposContagem[grupo] = 1;
+              }
+              }
+          });
 
-    const gruposOrdenados = Object.entries(gruposContagem)
-        .sort(([, a], [, b]) => b - a) 
-        .reduce((acc, [key, value]) => {
-        acc[key] = value;
-        return acc;
-        }, {} as { [key: string]: number });
+          const gruposOrdenados = Object.entries(gruposContagem)
+              .sort(([, a], [, b]) => b - a) 
+              .reduce((acc, [key, value]) => {
+              acc[key] = value;
+              return acc;
+              }, {} as { [key: string]: number });
 
-    return gruposOrdenados; 
-    }
+          return gruposOrdenados; 
+          }
 
     }
 
