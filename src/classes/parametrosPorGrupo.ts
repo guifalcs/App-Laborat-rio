@@ -125,13 +125,13 @@ export default class ParametrosPorGrupo {
         }
     
         return topPPG;
-      }
+    }
 
-      getTopQPG() {
+    getTopQPG() {
         const topQPG: { [key: string]: { [key: string]: number } } = {};
     
         for (const grupo in this.quantidadeParametrosPorGrupo) {
-            
+
           const topParametros = Object.entries(this.quantidadeParametrosPorGrupo[grupo])
             .sort(([, countA], [, countB]) => countB - countA)
             .slice(0, 10)
@@ -144,6 +144,6 @@ export default class ParametrosPorGrupo {
         }
     
         return topQPG;
-      }
+    }
 
   }
