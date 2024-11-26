@@ -67,11 +67,10 @@ export default class ParametrosPorGrupo {
           let percentage = (count / totalParametrosGrupo) * 100;
           parametrosPorGrupo.push({
             parametro,
-            percentage: parseFloat(percentage.toFixed(2)), // Arredondando para 2 casas decimais
+            percentage: parseFloat(percentage.toFixed(2)), 
           });
         }
   
-        // Ordenar os parâmetros em ordem decrescente de porcentagem
         parametrosPorGrupo.sort((a, b) => b.percentage - a.percentage);
   
         porcentagens[grupo] = {};
@@ -79,7 +78,6 @@ export default class ParametrosPorGrupo {
           porcentagens[grupo][parametro] = percentage;
         });
   
-        // Ordenar a contagem dos parâmetros também em ordem decrescente
         let parametrosOrdenados = Object.entries(gruposComParametros[grupo])
           .sort(([, countA], [, countB]) => countB - countA)
           .reduce((acc, [key, value]) => {
@@ -90,7 +88,6 @@ export default class ParametrosPorGrupo {
         gruposComParametros[grupo] = parametrosOrdenados;
       });
   
-      // Atribuir os valores ordenados aos atributos da classe
       this.porcentagemParametrosPorGrupo = porcentagens;
       this.quantidadeParametrosPorGrupo = gruposComParametros;
       this.grupos = grupos
@@ -107,4 +104,6 @@ export default class ParametrosPorGrupo {
     getGrupos(){
         return this.grupos;
     }
+
+
   }
