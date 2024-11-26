@@ -9,7 +9,7 @@ export default class ParametrosPorGrupo {
   
     //Métodos
     processarDados(registros: Array<dadosTabela>) {
-      let gp: Array<GP> = [];
+      let gp: Array<GP> = []; //Array com grupo e parâmetros de cada registro
   
       for (let i = 0; i < registros.length; i++) {
         gp.push({
@@ -18,9 +18,9 @@ export default class ParametrosPorGrupo {
         });
       }
   
-      let grupos: Array<string> = [];
+      let grupos: Array<string> = []; // Array com todos os tipos de grupos (Strings)
   
-      let gruposComParametros: { [key: string]: { [key: string]: number } } = {};
+      let gruposComParametros: { [key: string]: { [key: string]: number } } = {}; // Grupos com a quantidade que cada parâmetro apareceu nos registros associado a ele 
   
       gp.forEach(({ grupo, parametros }) => {
         if (!grupos.includes(grupo)) {
@@ -31,7 +31,6 @@ export default class ParametrosPorGrupo {
           gruposComParametros[grupo] = {};
         }
   
-        if (typeof parametros === "string") {
           const parametrosComMarcador = parametros.replace(/(\d),(\d)/g, "$1_$2");
   
           const listaParametros = parametrosComMarcador
@@ -48,15 +47,10 @@ export default class ParametrosPorGrupo {
             }
             gruposComParametros[grupo][parametro]++;
           });
-        } else {
-          console.warn(
-            `Parâmetros para o grupo "${grupo}" não são uma string válida:`,
-            parametros
-          );
-        }
+        
       });
   
-      let porcentagens: { [key: string]: { [key: string]: number } } = {};
+      let porcentagens: { [key: string]: { [key: string]: number } } = {}; //Objeto com os grupos como propriedades e com os parâmetros como valores que são objetos com o valor de sua porcentagem
   
       grupos.forEach((grupo) => {
         let totalParametrosGrupo = 0;
