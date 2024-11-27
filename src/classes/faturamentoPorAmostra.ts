@@ -57,8 +57,31 @@ export default class FaturamentoPorAmostra{
 
     }
 
-    topClientes(top: number){
-
+    topClientesAno(ano: number, top: number) {
+        const clienteValores: Record<string, number> = {};
+    
+        this.registros.forEach((registro) => {
+            const ordemServico = registro["Ordem de Servico"];
+            const anoRegistro = ordemServico.slice(-4); 
+            
+            if (anoRegistro === ano.toString()) {
+                const cliente = registro["Cliente - Responsável"];
+                const valorRegistro = Number(registro["Total do Valor da Amostra"]);
+                if (!clienteValores[cliente]) clienteValores[cliente] = 0;
+                clienteValores[cliente] += valorRegistro;
+            }
+        });
+    
+        const topClientes = Object.entries(clienteValores)
+            .map(([cliente, valor]) => ({
+                cliente,
+                valor: Number(valor.toFixed(2)),
+            }))
+            .sort((a, b) => b.valor - a.valor)
+            .slice(0, top);
+    
+        return topClientes;
     }
+    
 
 }
