@@ -1,7 +1,7 @@
 export default class ParametrosPorGrupo {
 
     //Atributos
-    registros: dadosTabela[] = []
+    registros: dadosCGP[] = []
     porcentagemParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
       {};
     quantidadeParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
@@ -9,7 +9,7 @@ export default class ParametrosPorGrupo {
     grupos: Array<String> = [];
   
     //Métodos
-    processarDados(registros: Array<dadosTabela>) {
+    processarDados(registros: Array<dadosCGP>) {
 
       //Inicializa o atributo registro
       this.registros = registros;
