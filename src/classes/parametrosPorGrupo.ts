@@ -7,6 +7,7 @@ export default class ParametrosPorGrupo {
     qpg: { [key: string]: { [key: string]: number } } =
       {};
     grupos: Array<String> = [];
+    agp: agp[] = []
     
 
   
@@ -91,7 +92,18 @@ export default class ParametrosPorGrupo {
   
         gruposComParametros[grupo] = parametrosOrdenados;
       });
-  
+
+      //Povoar o atributo agp
+
+      this.registros.map((registro: dadosCGP) => {
+
+        let novoItem: agp = [registro["Referência"], registro["Grupo"], [registro["Parâmetros"]]];
+        this.agp.push(novoItem);
+
+      })
+
+
+      //Atribuições
       this.ppg = porcentagens;
       this.qpg = gruposComParametros;
       this.grupos = grupos
@@ -174,11 +186,16 @@ export default class ParametrosPorGrupo {
           return gruposOrdenados; 
     }
 
+    getAGP(){
+      return this.agp
+    }
+
     }
 
 
 
 //PPG: Porcentagem Parâmetros por Grupo
 //QPG: Quantidade Parâmetros por Grupo
+//AGP: Amotra, Grupo e Parâmetros
 
   
