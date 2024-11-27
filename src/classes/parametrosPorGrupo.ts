@@ -1,13 +1,11 @@
 export default class ParametrosPorGrupo {
 
     //Atributos
-    registros: dadosCGP[] = []
-    ppg: { [key: string]: { [key: string]: number } } =
-      {};
-    qpg: { [key: string]: { [key: string]: number } } =
-      {};
-    grupos: Array<String> = [];
-    agp: agp[] = []
+    registros: dadosCGP[] = [] //Possui todos os dados da tabela analisada
+    ppg: { [key: string]: { [key: string]: number } } = {}; //Possui as porcentagens de cada parâmetro em cada grupo 
+    qpg: { [key: string]: { [key: string]: number } } = {}; //Possui as quantidades de cada parâmetro em cada grupo
+    grupos: Array<String> = []; // Possui todos os grupos de análise 
+    agp: agp[] = [] //Possui o grupo e os parâmetros de uma amostra específica
     
 
   

@@ -2,10 +2,10 @@
 export default class FaturamentoPorAmostra{
 
     //Atributos
-    registros: dadosFPA[] = []
-    valorPorAmostra: valorPorAmostra[] = []
-    clientes: string[] = []
-    topClientes: topCliente[] = []
+    registros: dadosFPA[] = [] //Possui todos os dados da tabela analisada
+    valorPorAmostra: valorPorAmostra[] = [] //Possui os valores de cada amostra da tabela analisada
+    clientes: string[] = [] //Possui todos os clientes da tabela analisada
+    topClientes: topCliente[] = [] //Possui os clientes que mais tem dinheiro investido na empresa (pago ou a pagar)
 
     //Métodos
     constructor(registros: dadosFPA[]){
@@ -59,8 +59,8 @@ export default class FaturamentoPorAmostra{
     getClientes(){
         return this.clientes;
     }
-    
-    getTopClientes(){
+
+    getTopClientes(top: number){
 
     }
 
