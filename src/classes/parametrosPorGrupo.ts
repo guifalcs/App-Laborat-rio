@@ -2,11 +2,13 @@ export default class ParametrosPorGrupo {
 
     //Atributos
     registros: dadosCGP[] = []
-    porcentagemParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
+    ppg: { [key: string]: { [key: string]: number } } =
       {};
-    quantidadeParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
+    qpg: { [key: string]: { [key: string]: number } } =
       {};
     grupos: Array<String> = [];
+    
+
   
     //Métodos
     constructor(registros: dadosCGP[]) {
@@ -90,17 +92,17 @@ export default class ParametrosPorGrupo {
         gruposComParametros[grupo] = parametrosOrdenados;
       });
   
-      this.porcentagemParametrosPorGrupo = porcentagens;
-      this.quantidadeParametrosPorGrupo = gruposComParametros;
+      this.ppg = porcentagens;
+      this.qpg = gruposComParametros;
       this.grupos = grupos
     }
 
     getPPG(){
-        return this.porcentagemParametrosPorGrupo;
+        return this.ppg;
     }
 
     getQPG(){
-        return this.quantidadeParametrosPorGrupo;
+        return this.qpg;
     }
 
     getGrupos(){
@@ -110,8 +112,8 @@ export default class ParametrosPorGrupo {
     getTopPPG() {
         const topPPG: { [key: string]: { [key: string]: number } } = {};
     
-        for (const grupo in this.porcentagemParametrosPorGrupo) {
-          const parametros = this.porcentagemParametrosPorGrupo[grupo];
+        for (const grupo in this.ppg) {
+          const parametros = this.ppg[grupo];
     
           const topParametros = Object.entries(parametros)
             .slice(0, 10) 
@@ -129,9 +131,9 @@ export default class ParametrosPorGrupo {
     getTopQPG() {
         const topQPG: { [key: string]: { [key: string]: number } } = {};
     
-        for (const grupo in this.quantidadeParametrosPorGrupo) {
+        for (const grupo in this.qpg) {
 
-          const topParametros = Object.entries(this.quantidadeParametrosPorGrupo[grupo])
+          const topParametros = Object.entries(this.qpg[grupo])
             .sort(([, countA], [, countB]) => countB - countA)
             .slice(0, 10)
             .reduce((acc, [parametro, count]) => {
