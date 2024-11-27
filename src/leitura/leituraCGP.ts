@@ -8,6 +8,4 @@ const dadosTabela = XLSX.utils.sheet_to_json(tabela);
 
 const parametrosPorGrupo = new ParametrosPorGrupo(dadosTabela)
 
-console.log(parametrosPorGrupo.getAGP())
-
 export default parametrosPorGrupo

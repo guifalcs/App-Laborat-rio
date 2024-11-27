@@ -38,3 +38,9 @@ type agp = [
     grupo: string,
     parametros: string[]
 ]
+
+//Tipo para o arra de cliente e valor total gasto em um ano
+type topCliente = {
+    cliente: string,
+    valorGasto: string
+}

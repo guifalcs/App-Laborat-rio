@@ -4,6 +4,8 @@ export default class FaturamentoPorAmostra{
     //Atributos
     registros: dadosFPA[] = []
     valorPorAmostra: valorPorAmostra[] = []
+    clientes: string[] = []
+    topClientes: topCliente[] = []
 
     //Métodos
     constructor(registros: dadosFPA[]){
@@ -11,7 +13,7 @@ export default class FaturamentoPorAmostra{
         //Povoa o atributo registro
         this.registros = registros;
 
-        //Povoa o atributo valorPorAmostra
+        //Calcula o valor por amostra 
         this.registros.map((registro: dadosFPA) => {
 
             let amostra = registro["Amostra"];
@@ -20,6 +22,16 @@ export default class FaturamentoPorAmostra{
             this.valorPorAmostra.push([amostra, valor])
 
         })
+
+        //Verifica os clientes segundo os dados do relatório
+        this.registros.map((registro: dadosFPA) => {
+            if(this.clientes.includes(registro["Cliente - Responsável"])){
+                return;
+            } else {
+                this.clientes.push(registro["Cliente - Responsável"]);
+            }
+        })
+
 
     }
 
@@ -41,6 +53,14 @@ export default class FaturamentoPorAmostra{
         })
 
         return faturamentoAnual.toFixed(2);
+
+    }
+
+    getClientes(){
+        return this.clientes;
+    }
+    
+    getTopClientes(){
 
     }
 
