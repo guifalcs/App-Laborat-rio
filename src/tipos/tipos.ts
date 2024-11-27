@@ -32,7 +32,7 @@ type valorPorAmostra = [
     valor: string
 ]
 
-//Tipo para array de amostra, se grupo e  seus parametros
+//Tipo para array de amostra, se grupo e seus parametros
 type agp = [
     amostra: string,
     grupo: string,
