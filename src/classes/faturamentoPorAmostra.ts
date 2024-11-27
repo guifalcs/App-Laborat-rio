@@ -57,8 +57,8 @@ export default class FaturamentoPorAmostra{
 
     }
 
-    topClientesAno(ano: number, top: number) {
-        const clienteValores: Record<string, number> = {};
+    topClientesAno(ano: string, top: number) {
+        const clienteValores: Record<string,number> = {};
     
         this.registros.forEach((registro) => {
             const ordemServico = registro["Ordem de Servico"];
