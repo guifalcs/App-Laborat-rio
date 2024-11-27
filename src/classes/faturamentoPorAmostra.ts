@@ -5,7 +5,6 @@ export default class FaturamentoPorAmostra{
     registros: dadosFPA[] = [] //Possui todos os dados da tabela analisada
     valorPorAmostra: valorPorAmostra[] = [] //Possui os valores de cada amostra da tabela analisada
     clientes: string[] = [] //Possui todos os clientes da tabela analisada
-    topClientes: topCliente[] = [] //Possui os clientes que mais tem dinheiro investido na empresa (pago ou a pagar)
 
     //Métodos
     constructor(registros: dadosFPA[]){
@@ -31,12 +30,14 @@ export default class FaturamentoPorAmostra{
                 this.clientes.push(registro["Cliente - Responsável"]);
             }
         })
-
-
     }
 
     getValorPorAmostra(){
         return this.valorPorAmostra;
+    }
+
+    getClientes(){
+        return this.clientes;
     }
 
     faturamentoAnual(ano: string){
@@ -56,11 +57,7 @@ export default class FaturamentoPorAmostra{
 
     }
 
-    getClientes(){
-        return this.clientes;
-    }
-
-    getTopClientes(top: number){
+    topClientes(top: number){
 
     }
 

@@ -6,8 +6,6 @@ export default class ParametrosPorGrupo {
     qpg: { [key: string]: { [key: string]: number } } = {}; //Possui as quantidades de cada parâmetro em cada grupo
     grupos: Array<String> = []; // Possui todos os grupos de análise 
     agp: agp[] = [] //Possui o grupo e os parâmetros de uma amostra específica
-    
-
   
     //Métodos
     constructor(registros: dadosCGP[]) {
