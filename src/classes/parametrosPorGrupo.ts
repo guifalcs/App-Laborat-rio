@@ -170,7 +170,7 @@ export default class ParametrosPorGrupo {
               }, {} as { [key: string]: number });
 
           return gruposOrdenados; 
-          }
+    }
 
     }
 
