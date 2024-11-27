@@ -1,7 +1,7 @@
 export default class ParametrosPorGrupo {
 
     //Atributos
-    registros: any[] = []
+    registros: dadosTabela[] = []
     porcentagemParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
       {};
     quantidadeParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
