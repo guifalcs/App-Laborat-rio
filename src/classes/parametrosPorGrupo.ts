@@ -1,6 +1,7 @@
 export default class ParametrosPorGrupo {
 
     //Atributos
+    registros: any[] = []
     porcentagemParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
       {};
     quantidadeParametrosPorGrupo: { [key: string]: { [key: string]: number } } =
@@ -9,6 +10,10 @@ export default class ParametrosPorGrupo {
   
     //Métodos
     processarDados(registros: Array<dadosTabela>) {
+
+      //Inicializa o atributo registro
+      this.registros = registros;
+
       let gp: Array<GP> = []; //Array com grupo e parâmetros de cada registro
   
       for (let i = 0; i < registros.length; i++) {
@@ -140,11 +145,11 @@ export default class ParametrosPorGrupo {
         return topQPG;
     }
 
-    getTopGrupos(registros: Array<dadosTabela>){
+    getTopGrupos(){
         
         const gruposContagem: { [key: string]: number } = {};
 
-        registros.forEach((registro) => {
+        this.registros.forEach((registro) => {
               const grupo = registro["Grupo"]; 
               if (grupo) {
 
