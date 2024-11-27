@@ -22,5 +22,12 @@ type dadosFPA = {
     'Cliente - Responsável': string,
     Fatura: string,
     'Ordem de Servico': string,
+    'Amostra': string,
     'Total do Valor da Amostra': string
 }
+
+//Tipo para o array de valor por amostra
+type valorPorAmostra = [
+    amostra: string,
+    valor: string
+]
