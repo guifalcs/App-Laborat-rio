@@ -9,9 +9,9 @@ export default class ParametrosPorGrupo {
     grupos: Array<String> = [];
   
     //Métodos
-    processarDados(registros: Array<dadosCGP>) {
+    constructor(registros: dadosCGP[]) {
 
-      //Inicializa o atributo registro
+      //Povoa o atributo registro
       this.registros = registros;
 
       let gp: Array<GP> = []; //Array com grupo e parâmetros de cada registro
