@@ -174,4 +174,9 @@ export default class ParametrosPorGrupo {
 
     }
 
+
+
+//PPG: Porcentagem Parâmetros por Grupo
+//QPG: Quantidade Parâmetros por Grupo
+
   
