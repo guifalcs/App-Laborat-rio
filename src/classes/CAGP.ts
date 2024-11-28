@@ -1,4 +1,4 @@
-export default class ParametrosPorGrupo {
+export default class CAGP {
 
     //Atributos
     registros: dadosCGP[] = [] //Possui todos os dados da tabela analisada
@@ -189,7 +189,7 @@ export default class ParametrosPorGrupo {
     }
 
 
-
+//CAGP: Classe para analisar a tabela de clientes, amostras e seus grupos e parâmetros
 //PPG: Porcentagem Parâmetros por Grupo
 //QPG: Quantidade Parâmetros por Grupo
 //AGP: Amotra, Grupo e Parâmetros

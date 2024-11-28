@@ -1,5 +1,5 @@
 
-export default class FaturamentoPorAmostra{
+export default class CFA{
 
     //Atributos
     registros: dadosFPA[] = [] //Possui todos os dados da tabela analisada
@@ -102,3 +102,5 @@ export default class FaturamentoPorAmostra{
     
 
 }
+
+//CFA: Classe para ler a tabela de clientes e o faturamento de cada amostra realizada

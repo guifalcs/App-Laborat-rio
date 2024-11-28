@@ -1,6 +1,3 @@
-import parametrosPorGrupo from "./leitura/leituraCGP";
-import faturamentoPorAmostra from "./leitura/leituraFPA";
+import FGP from "./classes/FGP";
 
-console.log(faturamentoPorAmostra.getTicketMedioAno('2021'))
-
-//  console.log(parametrosPorGrupo.getGrupos())
+// const fgp = new FGP()
