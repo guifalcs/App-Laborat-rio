@@ -71,16 +71,21 @@ export default class CFA{
 
     }
 
-    getFaturamentoPorCliente(){
+    getFaturamentoPorCliente(ano: string){
 
-    this.registros.forEach((registro: dadosCFA) => {
+        this.registros.forEach((registro: dadosCFA) => {
+            const ordemServico = registro["Ordem de Servico"];
+            const anoRegistro = ordemServico.slice(-4); 
+            
+            if (anoRegistro === ano.toString()) {
+                const cliente = registro["Cliente - Responsável"];
+                const valorRegistro = Number(registro["Total do Valor da Amostra"]);
+                if (!this.faturamentoPorCliente[cliente]) this.faturamentoPorCliente[cliente] = 0;
+                this.faturamentoPorCliente[cliente] += valorRegistro;
+            }
+        });
 
-            const cliente = registro["Cliente - Responsável"];
-            const valorRegistro = Number(registro["Total do Valor da Amostra"]);
-            if (!this.faturamentoPorCliente[cliente]) this.faturamentoPorCliente[cliente] = 0;
-            this.faturamentoPorCliente[cliente] += valorRegistro;
-
-    });
+    return this.faturamentoPorCliente
 
     }
 
@@ -102,19 +107,9 @@ export default class CFA{
     }
 
     topClientesAno(ano: string, top: number) {
-        const clienteValores: Record<string,number> = {};
+        let clienteValores: Record<string,number> = {};
     
-        this.registros.forEach((registro: dadosCFA) => {
-            const ordemServico = registro["Ordem de Servico"];
-            const anoRegistro = ordemServico.slice(-4); 
-            
-            if (anoRegistro === ano.toString()) {
-                const cliente = registro["Cliente - Responsável"];
-                const valorRegistro = Number(registro["Total do Valor da Amostra"]);
-                if (!clienteValores[cliente]) clienteValores[cliente] = 0;
-                clienteValores[cliente] += valorRegistro;
-            }
-        });
+        clienteValores = this.getFaturamentoPorCliente(ano)
     
         const topClientes = Object.entries(clienteValores)
             .map(([cliente, valor]) => ({
