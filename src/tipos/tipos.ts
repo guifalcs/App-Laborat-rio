@@ -5,7 +5,7 @@ type GP = {
 }
 
 //Tipo para os dados do relatório de Clientes - Grupos - Parâmetros
-type dadosCGP = {
+type dadosCAGP = {
     Cliente: string,
     'Ordem de serviço': string,
     'Referência': string,

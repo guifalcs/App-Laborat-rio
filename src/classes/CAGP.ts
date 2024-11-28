@@ -1,14 +1,14 @@
 export default class CAGP {
 
     //Atributos
-    registros: dadosCGP[] = [] //Possui todos os dados da tabela analisada
+    registros: dadosCAGP[] = [] //Possui todos os dados da tabela analisada
     ppg: { [key: string]: { [key: string]: number } } = {}; //Possui as porcentagens de cada parâmetro em cada grupo 
     qpg: { [key: string]: { [key: string]: number } } = {}; //Possui as quantidades de cada parâmetro em cada grupo
     grupos: Array<String> = []; // Possui todos os grupos de análise 
     agp: agp[] = [] //Possui o grupo e os parâmetros de uma amostra específica
   
     //Métodos
-    constructor(registros: dadosCGP[]) {
+    constructor(registros: dadosCAGP[]) {
 
       //Povoa o atributo registro
       this.registros = registros;
@@ -91,7 +91,7 @@ export default class CAGP {
 
       //Povoar o atributo agp
 
-      this.registros.map((registro: dadosCGP) => {
+      this.registros.map((registro: dadosCAGP) => {
 
         let novoItem: agp = [registro["Referência"], registro["Grupo"], [registro["Parâmetros"]]];
         this.agp.push(novoItem);
