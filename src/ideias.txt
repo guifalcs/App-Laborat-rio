@@ -1,4 +1,4 @@
-Ticket medio por cliente
+Ticket medio por cliente - OK (Verificar lume)
 Faturamento e ticket medio por grupo - OK
 verificar o faturamento de 2020  - OK
 Listar clientes por taxa 20%, 35%, 50%, 80%  + numero de amostras + ticket medio 

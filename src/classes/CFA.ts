@@ -60,14 +60,36 @@ export default class CFA{
 
     getTicketMedioClienteAno(cliente: string, ano: string){
 
-
-        let listaTMC: any[] = []
+        let clientesValores = this.getFaturamentoPorCliente(ano)
+        let clienteRegistrosTicketMedio: any = {}
 
         this.registros.forEach((registro: dadosCFA) => {
 
-            
-
+            if(!clienteRegistrosTicketMedio[registro['Cliente - Responsável']]){
+                clienteRegistrosTicketMedio[registro['Cliente - Responsável']] = {
+                    registros: 1,
+                    faturamento: Number(registro["Total do Valor da Amostra"]),
+                    ticketMedio: Number(registro["Total do Valor da Amostra"])
+                }
+            } else {
+                clienteRegistrosTicketMedio[registro['Cliente - Responsável']].registros++
+                clienteRegistrosTicketMedio[registro['Cliente - Responsável']].faturamento += Number(registro["Total do Valor da Amostra"])
+                clienteRegistrosTicketMedio[registro['Cliente - Responsável']].ticketMedio = clienteRegistrosTicketMedio[registro['Cliente - Responsável']].faturamento / clienteRegistrosTicketMedio[registro['Cliente - Responsável']].registros
+            }
         })
+
+        const clientesFiltrados = Object.entries(clienteRegistrosTicketMedio)
+        .filter(([nomeCliente]) => nomeCliente.toLowerCase().includes(cliente.toLowerCase()))
+        .map(([nomeCliente, ticketMedio]) => ({
+            cliente: nomeCliente,
+            ticketMedio: ticketMedio
+        }));
+
+        if (clientesFiltrados.length === 0) {
+        return `Nenhum cliente encontrado para o termo "${cliente}".`;
+        }
+
+        return clientesFiltrados;
 
     }
 
