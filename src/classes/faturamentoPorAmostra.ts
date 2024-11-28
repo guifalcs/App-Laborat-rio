@@ -83,20 +83,20 @@ export default class FaturamentoPorAmostra{
         return topClientes;
     }
 
-    getTicketMedio(){
-        let registros2024 = []
+    getTicketMedioAno(ano: string){
+        let registrosAno = []
         this.registros.map((registro) => {
             const ordemServico = registro["Ordem de Servico"];
             const anoRegistro = ordemServico.slice(-4); 
-            if(registro["Amostra"].slice(-4) == '2020') {
-                registros2024.push(registro)
+            if(registro["Amostra"].slice(-4) == ano) {
+                registrosAno.push(registro)
             }
 
         })
 
-        let faturamento = Number(this.faturamentoAnual("2020"))
+        let faturamento = Number(this.faturamentoAnual(ano))
 
-        let ticketmedio = faturamento/registros2024.length;
+        let ticketmedio = faturamento/registrosAno.length;
         return ticketmedio.toFixed(2);
     }
     
