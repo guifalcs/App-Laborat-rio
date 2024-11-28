@@ -4,7 +4,7 @@ type GP = {
     parametros: string
 }
 
-//Tipo para os dados do relatório de Clientes - Grupos - Parâmetros
+//Tipo para os dados do relatório de Clientes - Amostra - Grupos - Parâmetros
 type dadosCAGP = {
     Cliente: string,
     'Ordem de serviço': string,
@@ -16,8 +16,8 @@ type dadosCAGP = {
     'Parâmetros': string
 }
 
-//Tipo para os dados do relatório de Faturamento por Amostra
-type dadosFPA = {
+//Tipo para os dados do relatório de Cliente, Faturamento por amostra
+type dadosCFA = {
     'ID Fatura': number,
     'Cliente - Responsável': string,
     Fatura: string,

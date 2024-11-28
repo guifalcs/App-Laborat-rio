@@ -8,6 +8,10 @@ export default class FGP{
 
     constructor(tabelaCGP: dadosCAGP[], tabelaFPA: dadosFPA[]){
 
+        //Instanciando classes de análise auxiliares
+        const cagp = new CAGP(tabelaCGP);
+        const cfa = new CFA(tabelaFPA);
+
         //Povoando os atributos de registro
         this.registrosCGP = tabelaCGP;
         this.registrosFaturamento = tabelaFPA;

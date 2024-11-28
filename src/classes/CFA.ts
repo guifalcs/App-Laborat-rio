@@ -2,18 +2,18 @@
 export default class CFA{
 
     //Atributos
-    registros: dadosFPA[] = [] //Possui todos os dados da tabela analisada
+    registros: dadosCFA[] = [] //Possui todos os dados da tabela analisada
     valorPorAmostra: valorPorAmostra[] = [] //Possui os valores de cada amostra da tabela analisada
     clientes: string[] = [] //Possui todos os clientes da tabela analisada
 
     //Métodos
-    constructor(registros: dadosFPA[]){
+    constructor(registros: dadosCFA[]){
 
         //Povoa o atributo registro
         this.registros = registros;
 
         //Calcula o valor por amostra 
-        this.registros.map((registro: dadosFPA) => {
+        this.registros.map((registro: dadosCFA) => {
 
             let amostra = registro["Amostra"];
             let valor = registro["Total do Valor da Amostra"];
@@ -23,7 +23,7 @@ export default class CFA{
         })
 
         //Verifica os clientes segundo os dados do relatório
-        this.registros.map((registro: dadosFPA) => {
+        this.registros.map((registro: dadosCFA) => {
             if(this.clientes.includes(registro["Cliente - Responsável"])){
                 return;
             } else {
@@ -40,11 +40,36 @@ export default class CFA{
         return this.clientes;
     }
 
+    getTicketMedioAno(ano: string){
+        let registrosAno = []
+        this.registros.map((registro) => {
+            const ordemServico = registro["Ordem de Servico"];
+            const anoRegistro = ordemServico.slice(-4); 
+            if(registro["Amostra"].slice(-4) == ano) {
+                registrosAno.push(registro)
+            }
+
+        })
+
+        let faturamento = Number(this.faturamentoAnual(ano))
+
+        let ticketmedio = faturamento/registrosAno.length;
+        return ticketmedio.toFixed(2);
+    }
+
+    getTicketMedioClienteAno(cliente: string, ano: string){
+
+        this.registros.forEach((registro: dadosCFA) => {
+
+        })
+
+    }
+
     faturamentoAnual(ano: string){
 
         let faturamentoAnual: number = 0;
 
-        this.registros.forEach((registro: dadosFPA) => {
+        this.registros.forEach((registro: dadosCFA) => {
 
             if(registro["Amostra"].slice(-4) == ano) {
                 let valor: number = parseFloat(registro['Total do Valor da Amostra'])
@@ -81,23 +106,6 @@ export default class CFA{
             .slice(0, top);
     
         return topClientes;
-    }
-
-    getTicketMedioAno(ano: string){
-        let registrosAno = []
-        this.registros.map((registro) => {
-            const ordemServico = registro["Ordem de Servico"];
-            const anoRegistro = ordemServico.slice(-4); 
-            if(registro["Amostra"].slice(-4) == ano) {
-                registrosAno.push(registro)
-            }
-
-        })
-
-        let faturamento = Number(this.faturamentoAnual(ano))
-
-        let ticketmedio = faturamento/registrosAno.length;
-        return ticketmedio.toFixed(2);
     }
     
 
