@@ -4,9 +4,9 @@ import CFA from "./CFA";
 export default class FGP{
 
     registrosCGP: dadosCAGP[] = [];
-    registrosFaturamento: dadosFPA[] = []
+    registrosFaturamento: dadosCFA[] = []
 
-    constructor(tabelaCGP: dadosCAGP[], tabelaFPA: dadosFPA[]){
+    constructor(tabelaCGP: dadosCAGP[], tabelaFPA: dadosCFA[]){
 
         //Instanciando classes de análise auxiliares
         const cagp = new CAGP(tabelaCGP);
