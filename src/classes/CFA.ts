@@ -60,7 +60,7 @@ export default class CFA{
 
     getTicketMedioClienteAno(cliente: string, ano: string){
 
-        let clientesValores = this.getFaturamentoPorCliente(ano)
+        let clientesValores = this.getFaturamentoPorClienteAno(ano)
         let clienteRegistrosTicketMedio: any = {}
 
         this.registros.forEach((registro: dadosCFA) => {
@@ -93,7 +93,7 @@ export default class CFA{
 
     }
 
-    getFaturamentoPorCliente(ano: string){
+    getFaturamentoPorClienteAno(ano: string){
 
         this.registros.forEach((registro: dadosCFA) => {
             const ordemServico = registro["Ordem de Servico"];
@@ -131,7 +131,7 @@ export default class CFA{
     topClientesAno(ano: string, top: number) {
         let clienteValores: Record<string,number> = {};
     
-        clienteValores = this.getFaturamentoPorCliente(ano)
+        clienteValores = this.getFaturamentoPorClienteAno(ano)
     
         const topClientes = Object.entries(clienteValores)
             .map(([cliente, valor]) => ({
