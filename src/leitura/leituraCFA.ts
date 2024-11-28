@@ -6,8 +6,8 @@ const arquivo = XLSX.readFile('./src/planilhas/Faturamento por parâmetros-amost
 const tabela = arquivo.Sheets[arquivo.SheetNames[0]];
 const dadosTabela = XLSX.utils.sheet_to_json(tabela);
 
-const faturamentoPorAmostra = new CFA(dadosTabela)
+const cfa = new CFA(dadosTabela)
 
-export default faturamentoPorAmostra
+export default cfa
 
 

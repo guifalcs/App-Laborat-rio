@@ -12,4 +12,6 @@ const dadosTabelaFaturamento = XLSX.utils.sheet_to_json(tabelaFPA)
 
 const fgp = new FGP(tabelaCGP, tabelaFPA);
 
+export default fgp
+
 

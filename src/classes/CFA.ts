@@ -5,6 +5,7 @@ export default class CFA{
     registros: dadosCFA[] = [] //Possui todos os dados da tabela analisada
     valorPorAmostra: valorPorAmostra[] = [] //Possui os valores de cada amostra da tabela analisada
     clientes: string[] = [] //Possui todos os clientes da tabela analisada
+    faturamentoPorCliente: Record<string,number> = {}
 
     //Métodos
     constructor(registros: dadosCFA[]){
@@ -59,9 +60,27 @@ export default class CFA{
 
     getTicketMedioClienteAno(cliente: string, ano: string){
 
+
+        let listaTMC: any[] = []
+
         this.registros.forEach((registro: dadosCFA) => {
 
+            
+
         })
+
+    }
+
+    getFaturamentoPorCliente(){
+
+    this.registros.forEach((registro: dadosCFA) => {
+
+            const cliente = registro["Cliente - Responsável"];
+            const valorRegistro = Number(registro["Total do Valor da Amostra"]);
+            if (!this.faturamentoPorCliente[cliente]) this.faturamentoPorCliente[cliente] = 0;
+            this.faturamentoPorCliente[cliente] += valorRegistro;
+
+    });
 
     }
 
@@ -85,7 +104,7 @@ export default class CFA{
     topClientesAno(ano: string, top: number) {
         const clienteValores: Record<string,number> = {};
     
-        this.registros.forEach((registro) => {
+        this.registros.forEach((registro: dadosCFA) => {
             const ordemServico = registro["Ordem de Servico"];
             const anoRegistro = ordemServico.slice(-4); 
             
