@@ -65,13 +65,16 @@ export default class CFA{
 
         this.registros.forEach((registro: dadosCFA) => {
 
-            if(!clienteRegistrosTicketMedio[registro['Cliente - Responsável']]){
+            const ordemServico = registro["Ordem de Servico"];
+            const anoRegistro = ordemServico.slice(-4); 
+
+            if(!clienteRegistrosTicketMedio[registro['Cliente - Responsável']] && registro["Amostra"].slice(-4) == ano){
                 clienteRegistrosTicketMedio[registro['Cliente - Responsável']] = {
                     registros: 1,
                     faturamento: Number(registro["Total do Valor da Amostra"]),
                     ticketMedio: Number(registro["Total do Valor da Amostra"])
                 }
-            } else {
+            } else if(clienteRegistrosTicketMedio[registro['Cliente - Responsável']] && registro["Amostra"].slice(-4) == ano) {
                 clienteRegistrosTicketMedio[registro['Cliente - Responsável']].registros++
                 clienteRegistrosTicketMedio[registro['Cliente - Responsável']].faturamento += Number(registro["Total do Valor da Amostra"])
                 clienteRegistrosTicketMedio[registro['Cliente - Responsável']].ticketMedio = clienteRegistrosTicketMedio[registro['Cliente - Responsável']].faturamento / clienteRegistrosTicketMedio[registro['Cliente - Responsável']].registros
@@ -86,7 +89,7 @@ export default class CFA{
         }));
 
         if (clientesFiltrados.length === 0) {
-        return `Nenhum cliente encontrado para o termo "${cliente}".`;
+        return `Nenhum cliente encontrado para o termo "${cliente}" no ano ${ano}.`;
         }
 
         return clientesFiltrados;

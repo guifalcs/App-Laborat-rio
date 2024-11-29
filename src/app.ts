@@ -1,4 +1,4 @@
 import cfa from "./leitura/leituraCFA";
 
-// console.log(cfa.topClientesAno('2024', 20))
-console.log(cfa.getTicketMedioClienteAno('abc', '2024'))
+// console.log(cfa.getFaturamentoPorClienteAno('2020'))
+    console.log(cfa.getTicketMedioClienteAno('Lume', '2021'))
