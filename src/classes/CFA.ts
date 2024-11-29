@@ -52,7 +52,7 @@ export default class CFA{
 
         })
 
-        let faturamento = Number(this.faturamentoAnual(ano))
+        let faturamento = Number(this.getFaturamentoAnual(ano))
 
         let ticketmedio = faturamento/registrosAno.length;
         return ticketmedio.toFixed(2);
@@ -114,7 +114,7 @@ export default class CFA{
 
     }
 
-    faturamentoAnual(ano: string){
+    getFaturamentoAnual(ano: string){
 
         let faturamentoAnual: number = 0;
 
@@ -131,7 +131,7 @@ export default class CFA{
 
     }
 
-    topClientesAno(ano: string, top: number) {
+    getTopClientesAno(ano: string, top: number) {
         let clienteValores: Record<string,number> = {};
     
         clienteValores = this.getFaturamentoPorClienteAno(ano)

@@ -18,6 +18,8 @@ export default class FGP{
 
     }
 
+    
+
 }
 
 //FGP: Classe para relacionar as tabelas de Faturamento por amostra com grupos e parametros por amostra
