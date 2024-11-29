@@ -54,8 +54,8 @@ export default class CFA{
 
         let faturamento = Number(this.getFaturamentoAnual(ano))
 
-        let ticketmedio = faturamento/registrosAno.length;
-        return ticketmedio.toFixed(2);
+        let ticketmedio = (faturamento/registrosAno.length).toFixed(2)
+        return ticketmedio
     }
 
     getTicketMedioClienteAno(cliente: string, ano: string){
@@ -121,13 +121,13 @@ export default class CFA{
         this.registros.forEach((registro: dadosCFA) => {
 
             if(registro["Amostra"].slice(-4) == ano) {
-                let valor: number = parseFloat(registro['Total do Valor da Amostra'])
+                let valor: number = Number(Number(registro['Total do Valor da Amostra']).toFixed(2))
                 faturamentoAnual += valor;
             }
 
         })
 
-        return faturamentoAnual.toFixed(2);
+        return faturamentoAnual
 
     }
 
