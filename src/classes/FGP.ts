@@ -4,7 +4,7 @@ import CFA from "./CFA";
 export default class FGP{
 
     registrosCGP: dadosCAGP[] = [];
-    registrosFaturamento: dadosCFA[] = []
+    registrosCFA: dadosCFA[] = []
 
     constructor(tabelaCGP: dadosCAGP[], tabelaFPA: dadosCFA[]){
 
@@ -14,7 +14,7 @@ export default class FGP{
 
         //Povoando os atributos de registro
         this.registrosCGP = tabelaCGP;
-        this.registrosFaturamento = tabelaFPA;
+        this.registrosCFA = tabelaFPA;
 
     }
 
