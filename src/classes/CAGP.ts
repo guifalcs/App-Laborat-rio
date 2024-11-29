@@ -193,5 +193,3 @@ export default class CAGP {
 //PPG: Porcentagem Parâmetros por Grupo
 //QPG: Quantidade Parâmetros por Grupo
 //AGP: Amotra, Grupo e Parâmetros
-
-  

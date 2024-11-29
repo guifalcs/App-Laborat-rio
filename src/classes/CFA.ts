@@ -42,19 +42,21 @@ export default class CFA{
     }
 
     getTicketMedioAno(ano: string){
-        let registrosAno = []
-        this.registros.map((registro) => {
-            const ordemServico = registro["Ordem de Servico"];
-            const anoRegistro = ordemServico.slice(-4); 
-            if(registro["Amostra"].slice(-4) == ano) {
-                registrosAno.push(registro)
-            }
-
-        })
+        let registrosAno = this.registros.filter((registro) => {
+            return registro["Amostra"].slice(-4) === ano;
+        });
 
         let faturamento = Number(this.getFaturamentoAnual(ano))
 
-        let ticketmedio = (faturamento/registrosAno.length).toFixed(2)
+        if (isNaN(faturamento)) {
+            throw new Error(`Faturamento anual inválido para o ano ${ano}`);
+        }
+
+        if (registrosAno.length === 0) {
+            return "Erro de divisão por zero"
+        }
+
+        let ticketmedio = Math.round((faturamento / registrosAno.length) * 100) / 100;
         return ticketmedio
     }
 
@@ -114,21 +116,13 @@ export default class CFA{
 
     }
 
-    getFaturamentoAnual(ano: string){
-
-        let faturamentoAnual: number = 0;
-
-        this.registros.forEach((registro: dadosCFA) => {
-
-            if(registro["Amostra"].slice(-4) == ano) {
-                let valor: number = Number(Number(registro['Total do Valor da Amostra']).toFixed(2))
-                faturamentoAnual += valor;
-            }
-
-        })
-
-        return faturamentoAnual
-
+    getFaturamentoAnual(ano: string): number {
+        return this.registros
+            .filter((registro: dadosCFA) => registro["Amostra"].slice(-4) === ano) // Filtra registros do ano desejado
+            .reduce((faturamento, registro) => {
+                const valor = Math.round(Number(registro['Total do Valor da Amostra']) * 100) / 100; // Converte e arredonda
+                return faturamento + valor; // Soma o valor ao total acumulado
+            }, 0); // Inicializa o acumulador como 0
     }
 
     getTopClientesAno(ano: string, top: number) {

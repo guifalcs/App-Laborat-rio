@@ -23,26 +23,30 @@ export default class FGP{
     getTicketMedioGruposAno(ano: string) {
         const ticketMedioGrupos: Record<string, { ocorrencias: number; valorTotal: number; ticketMedio: number }> = {};
     
-        // Mapeia os registros do CAGP para processar os grupos e referências
-        this.registrosCAGP.forEach((registroCAGP: dadosCAGP) => {
-            const grupo = registroCAGP['Grupo']
-            const referencia = registroCAGP['Referência']
-
-            // Filtra pelo ano nos últimos 4 caracteres da "Referência"
-            if (referencia.slice(-4) != ano) return
+        // Criar um Map para busca eficiente por Amostra
+        const cfaMap = new Map<string, dadosCFA>();
+        this.registrosCFA.forEach((registro) => {
+            cfaMap.set(registro['Amostra'], registro);
+        });
     
-            // Busca o valor correspondente na tabela CFA pela "Amostra"
-            const registroCFA = this.registrosCFA.find(
-                (registro: dadosCFA) => {
-                    return registro['Amostra'] == referencia && registro['Amostra'].slice(-4) == ano
-                }
-            );
+        // Processar registros do CAGP
+        this.registrosCAGP.forEach((registroCAGP: dadosCAGP) => {
+            const grupo = registroCAGP['Grupo'];
+            const referencia = registroCAGP['Referência'];
+            
+            // Filtra pelo ano nos últimos 4 caracteres da "Referência"
+            const anoReferencia = referencia.slice(-4);
+            if (anoReferencia !== ano) return;
+    
+            // Busca o valor correspondente na tabela CFA pelo Map
+            const registroCFA = cfaMap.get(referencia);
     
             // Se não encontrar o registro correspondente, pula para o próximo
-            if (!registroCFA) return
+            if (!registroCFA) return;
     
             // Converte o valor de string para número
             const valor = Number(registroCFA["Total do Valor da Amostra"]);
+            if (isNaN(valor)) return;
     
             // Se o grupo ainda não foi registrado, inicializa-o
             if (!ticketMedioGrupos[grupo]) {
@@ -55,13 +59,14 @@ export default class FGP{
     
             // Atualiza os dados do grupo
             ticketMedioGrupos[grupo].ocorrencias += 1;
-            ticketMedioGrupos[grupo].valorTotal = Number((ticketMedioGrupos[grupo].valorTotal + valor).toFixed(2))
+            ticketMedioGrupos[grupo].valorTotal = Math.round((ticketMedioGrupos[grupo].valorTotal + valor) * 100) / 100;
             ticketMedioGrupos[grupo].ticketMedio =
-            Number((ticketMedioGrupos[grupo].valorTotal / ticketMedioGrupos[grupo].ocorrencias).toFixed(2))
+                Math.round((ticketMedioGrupos[grupo].valorTotal / ticketMedioGrupos[grupo].ocorrencias) * 100) / 100;
         });
     
         return ticketMedioGrupos;
     }
+    
     
     
 
