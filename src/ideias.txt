@@ -1,1 +1,4 @@
 Listar clientes por taxa 20%, 35%, 50%, 80%  + numero de amostras + ticket medio 
+
+    -Pegar o faturamento anual e dividir por para achar as categorias 20%, 40%, 60%, 80%
+    -Passar por cada cliente e bater com a categoria e jogar em uma lista de clientes em cada categoria
