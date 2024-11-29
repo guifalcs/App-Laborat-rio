@@ -1,16 +1,16 @@
 import FGP from "../classes/FGP";
 
 const XLSX = require('xlsx');
-const arquivoCGP = XLSX.readFile('./src/planilhas/relatorioCGP.xlsx');
-const arquivoFaturamento = XLSX.readFile('./src/planilhas/relatorioCGP.xlsx');
+const arquivoCAGP = XLSX.readFile('./src/planilhas/relatorioCGP.xlsx');
+const arquivoCFA = XLSX.readFile('./src/planilhas/Faturamento por parâmetros-amostra-OS-proposta-cliente desde 2020.xlsx');
 
-const tabelaCGP = arquivoCGP.Sheets[arquivoCGP.SheetNames[0]];
-const dadosTabelaCGP: any[] = XLSX.utils.sheet_to_json(tabelaCGP);
+const tabelaCGP = arquivoCAGP.Sheets[arquivoCAGP.SheetNames[0]];
+const dadosTabelaCAGP: any[] = XLSX.utils.sheet_to_json(tabelaCGP);
 
-const tabelaFPA = arquivoFaturamento.Sheets[arquivoFaturamento.SheetNames[0]]
-const dadosTabelaFGP: any[] = XLSX.utils.sheet_to_json(tabelaFPA)
+const tabelaFPA = arquivoCFA.Sheets[arquivoCFA.SheetNames[0]]
+const dadosTabelaCFA: any[] = XLSX.utils.sheet_to_json(tabelaFPA)
 
-const fgp = new FGP(dadosTabelaCGP, dadosTabelaFGP);
+const fgp = new FGP(dadosTabelaCAGP, dadosTabelaCFA);
 
 export default fgp
 

@@ -1,2 +1,1 @@
-Faturamento e ticket medio por grupo
 Listar clientes por taxa 20%, 35%, 50%, 80%  + numero de amostras + ticket medio 
