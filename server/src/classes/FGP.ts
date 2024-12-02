@@ -69,19 +69,40 @@ export default class FGP{
         return ticketMedioGrupos;
     }
     
-    getClientesPorFaixa(ano: string){
+    getClientesPorFaixa(ano: string) {
+        // Obtém os dados dos clientes
+        let clientes = this.cfa.getFaturamentoPorClienteAno(ano);
+    
+        // Ordena os clientes pelo faturamento em ordem decrescente
+        let rankingClientes = Object.entries(clientes)
+            .map(([cliente, valor]) => ({ cliente, valor: Math.round(valor as number) }))
+            .sort((a, b) => b.valor - a.valor); // Ordenação decrescente pelo valor
+    
+        // Calcula o total de clientes
+        let totalClientes = rankingClientes.length;
+    
+        // Define as faixas como percentuais do ranking
+        let faixas: any[] = [
+            { faixa: '0-20%', inicio: 0, fim: Math.ceil((20 / 100) * totalClientes), clientes: [] },
+            { faixa: '20-40%', inicio: Math.ceil((20 / 100) * totalClientes), fim: Math.ceil((40 / 100) * totalClientes), clientes: [] },
+            { faixa: '40-60%', inicio: Math.ceil((40 / 100) * totalClientes), fim: Math.ceil((60 / 100) * totalClientes), clientes: [] },
+            { faixa: '60-80%', inicio: Math.ceil((60 / 100) * totalClientes), fim: Math.ceil((80 / 100) * totalClientes), clientes: [] },
+            { faixa: '80-100%', inicio: Math.ceil((80 / 100) * totalClientes), fim: totalClientes, clientes: [] },
+        ];
+    
+        // Distribui os clientes nas faixas de acordo com a posição no ranking
+        rankingClientes.forEach((cliente, index) => {
+            faixas.forEach((faixa) => {
+                if (index >= faixa.inicio && index < faixa.fim) {
+                    faixa.clientes.push(cliente);
+                }
+            });
+        });
 
-        let faturamentoAnual = this.cfa.getFaturamentoAnual(ano)
-        let faixas: any[] = [{faixa: 20, valor: 0}, {faixa: 40, valor: 0}, {faixa: 60, valor: 0}, {faixa: 80, valor: 0}]
-
-        faixas.forEach((faixa) => {
-            faixa.valor = Math.round((faturamentoAnual * faixa.faixa) / 100)
-        })
-
-        let clientes = this.cfa.getClientesAno('2024')
-        console.log(clientes)
+        return faixas[0]
         
     }
+    
     
     
 
