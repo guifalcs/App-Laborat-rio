@@ -6,18 +6,20 @@ export default class FGP{
     registrosCAGP: dadosCAGP[] = [];
     registrosCFA: dadosCFA[] = [];
     grupos: Array<String> = [];
+    cfa: any = []
+    cagp: any = []
 
 
     constructor(tabelaCAGP: dadosCAGP[], tabelaCFA: dadosCFA[]){
 
         //Instanciando classes de análise auxiliares
-        const cagp = new CAGP(tabelaCAGP);
-        const cfa = new CFA(tabelaCFA);
+        this.cagp = new CAGP(tabelaCAGP);
+        this.cfa = new CFA(tabelaCFA);
 
         //Povoando os atributos de registro
         this.registrosCAGP = tabelaCAGP;
         this.registrosCFA = tabelaCFA;
-        this.grupos = cagp.getGrupos()
+        this.grupos = this.cagp.getGrupos()
     }
 
     getTicketMedioGruposAno(ano: string) {
@@ -67,6 +69,19 @@ export default class FGP{
         return ticketMedioGrupos;
     }
     
+    getClientesPorFaixa(ano: string){
+
+        let faturamentoAnual = this.cfa.getFaturamentoAnual(ano)
+        let faixas: any[] = [{faixa: 20, valor: 0}, {faixa: 40, valor: 0}, {faixa: 60, valor: 0}, {faixa: 80, valor: 0}]
+
+        faixas.forEach((faixa) => {
+            faixa.valor = Math.round((faturamentoAnual * faixa.faixa) / 100)
+        })
+
+        let clientes = this.cfa.getClientesAno('2024')
+        console.log(clientes)
+        
+    }
     
     
 

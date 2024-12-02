@@ -23,21 +23,25 @@ export default class CFA{
 
         })
 
-        //Verifica os clientes segundo os dados do relatório
-        this.registros.map((registro: dadosCFA) => {
-            if(this.clientes.includes(registro["Cliente - Responsável"])){
-                return;
-            } else {
-                this.clientes.push(registro["Cliente - Responsável"]);
-            }
-        })
+        
     }
 
     getValorPorAmostra(){
         return this.valorPorAmostra;
     }
 
-    getClientes(){
+    getClientesAno(ano: string){
+    
+        // Verifica os clientes segundo os dados do relatório
+        this.registros.forEach((registro: dadosCFA) => {
+            const amostraAno = registro['Amostra'].slice(-4); 
+    
+            // Verifica se o ano corresponde e se o cliente já não está na lista
+            if (amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])) {
+                this.clientes.push(registro["Cliente - Responsável"]);
+            }
+        });
+    
         return this.clientes;
     }
 
