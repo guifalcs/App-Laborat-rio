@@ -1,6 +1,6 @@
+import XLSX from 'xlsx'
 import FGP from "../analisadores/FGP";
 
-const XLSX = require('xlsx');
 const arquivoCAGP = XLSX.readFile('./src/planilhas/relatorioCGP.xlsx');
 const arquivoCFA = XLSX.readFile('./src/planilhas/Faturamento por parâmetros-amostra-OS-proposta-cliente desde 2020.xlsx');
 
