@@ -1,6 +1,6 @@
-import fgp from "./leitura/leituraFGP";
-import cagp from "./leitura/leituraCAGP";
-import cfa from "./leitura/leituraCFA";
+import fgp from "./leitores/leituraFGP";
+import cagp from "./leitores/leituraCAGP";
+import cfa from "./leitores/leituraCFA";
 
 console.log(fgp.getClientesPorFaixa('2022'))
 // console.log(cagp.getTopGrupos())

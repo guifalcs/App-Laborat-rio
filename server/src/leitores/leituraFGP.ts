@@ -1,4 +1,4 @@
-import FGP from "../classes/FGP";
+import FGP from "../analisadores/FGP";
 
 const XLSX = require('xlsx');
 const arquivoCAGP = XLSX.readFile('./src/planilhas/relatorioCGP.xlsx');

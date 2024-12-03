@@ -174,7 +174,7 @@ export default class CAGP {
 
           const gruposOrdenados = Object.entries(gruposContagem)
               .sort(([, a], [, b]) => b - a) 
-              .reduce((acc, [key, value]) => {
+              .reduce((acc: number, [key, value]) => {
               acc[key] = value;
               return acc;
               }, {} as { [key: string]: number });
