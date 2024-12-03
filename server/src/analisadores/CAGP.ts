@@ -1,19 +1,16 @@
 export default class CAGP {
 
-    //Atributos
-    registros: dadosCAGP[] = [] //Possui todos os dados da tabela analisada
-    ppg: { [key: string]: { [key: string]: number } } = {}; //Possui as porcentagens de cada parâmetro em cada grupo 
-    qpg: { [key: string]: { [key: string]: number } } = {}; //Possui as quantidades de cada parâmetro em cada grupo
-    grupos: Array<String> = []; // Possui todos os grupos de análise 
-    agp: agp[] = [] //Possui o grupo e os parâmetros de uma amostra específica
+    registros: dadosCAGP[] = [] 
+    ppg: { [key: string]: { [key: string]: number } } = {}; 
+    qpg: { [key: string]: { [key: string]: number } } = {}; 
+    grupos: Array<String> = []; 
+    agp: agp[] = []
   
-    //Métodos
     constructor(registros: dadosCAGP[]) {
 
-      //Povoa o atributo registro
       this.registros = registros;
 
-      let gp: Array<GP> = []; //Array com grupo e parâmetros de cada registro
+      let gp: Array<GP> = [];
   
       for (let i = 0; i < registros.length; i++) {
         gp.push({
@@ -22,9 +19,9 @@ export default class CAGP {
         });
       }
   
-      let grupos: Array<string> = []; // Array com todos os tipos de grupos (Strings)
+      let grupos: Array<string> = [];
   
-      let gruposComParametros: { [key: string]: { [key: string]: number } } = {}; // Grupos com a quantidade que cada parâmetro apareceu nos registros associado a ele 
+      let gruposComParametros: { [key: string]: { [key: string]: number } } = {}; 
   
       gp.forEach(({ grupo, parametros }) => {
         if (!grupos.includes(grupo)) {
@@ -54,7 +51,7 @@ export default class CAGP {
         
       });
   
-      let porcentagens: { [key: string]: { [key: string]: number } } = {}; //Objeto com os grupos como propriedades e com os parâmetros como valores que são objetos com o valor de sua porcentagem
+      let porcentagens: { [key: string]: { [key: string]: number } } = {}; 
   
       grupos.forEach((grupo) => {
         let totalParametrosGrupo = 0;
@@ -89,7 +86,6 @@ export default class CAGP {
         gruposComParametros[grupo] = parametrosOrdenados;
       });
 
-      //Povoar o atributo agp
 
       this.registros.map((registro: dadosCAGP) => {
 
@@ -99,7 +95,6 @@ export default class CAGP {
       })
 
 
-      //Atribuições
       this.ppg = porcentagens;
       this.qpg = gruposComParametros;
       this.grupos = grupos

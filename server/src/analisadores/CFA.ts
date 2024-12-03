@@ -1,19 +1,20 @@
 
 export default class CFA{
 
-    //Atributos
-    registros: dadosCFA[] = [] //Possui todos os dados da tabela analisada
-    valorPorAmostra: valorPorAmostra[] = [] //Possui os valores de cada amostra da tabela analisada
-    clientes: string[] = [] //Possui todos os clientes da tabela analisada
+    registros: dadosCFA[] = [] 
+    valorPorAmostra: valorPorAmostra[] = [] 
+    clientes: string[] = [] 
     faturamentoPorCliente: Record<string,number> = {}
 
-    //Métodos
     constructor(registros: dadosCFA[]){
 
         //Povoa o atributo registro
         this.registros = registros;
+        
+    }
 
-        //Calcula o valor por amostra 
+    getValorPorAmostra(){
+
         this.registros.map((registro: dadosCFA) => {
 
             let amostra = registro["Amostra"];
@@ -23,20 +24,14 @@ export default class CFA{
 
         })
 
-        
-    }
-
-    getValorPorAmostra(){
         return this.valorPorAmostra;
     }
 
     getClientesAno(ano: string){
     
-        // Verifica os clientes segundo os dados do relatório
         this.registros.forEach((registro: dadosCFA) => {
             const amostraAno = registro['Amostra'].slice(-4); 
     
-            // Verifica se o ano corresponde e se o cliente já não está na lista
             if (amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])) {
                 this.clientes.push(registro["Cliente - Responsável"]);
             }
@@ -122,11 +117,11 @@ export default class CFA{
 
     getFaturamentoAnual(ano: string): number {
         return this.registros
-            .filter((registro: dadosCFA) => registro["Amostra"].slice(-4) === ano) // Filtra registros do ano desejado
+            .filter((registro: dadosCFA) => registro["Amostra"].slice(-4) === ano) 
             .reduce((faturamento, registro) => {
-                const valor = Math.round(Number(registro['Total do Valor da Amostra']) * 100) / 100; // Converte e arredonda
-                return faturamento + valor; // Soma o valor ao total acumulado
-            }, 0); // Inicializa o acumulador como 0
+                const valor = Math.round(Number(registro['Total do Valor da Amostra']) * 100) / 100; 
+                return faturamento + valor
+            }, 0)
     }
 
     getTopClientesAno(ano: string, top: number) {
