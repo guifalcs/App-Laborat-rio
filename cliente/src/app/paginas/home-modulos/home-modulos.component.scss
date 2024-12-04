@@ -1,0 +1,39 @@
+.headerContainer{
+    display: block;
+}
+
+.homeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .contentContainer{
+        background: linear-gradient(
+        to right,
+        #FCFCFC,
+        #FEFEFE,
+        #FAFAFA,
+        #FDFDFD,
+        #F8F8F8,
+        #F9F9F9
+      );
+    
+      width: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2em;
+
+      .subtitle{
+        margin-top: 1em;;
+        }
+
+        .icon{
+            width: 6em;
+        }
+    }
+
+}
+
