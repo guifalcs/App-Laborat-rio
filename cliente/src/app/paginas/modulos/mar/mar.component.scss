@@ -18,8 +18,18 @@
     width: 90%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
-    padding: 3em;
+
+    .menuLateral{
+      background-color: grey;
+      width: 10%;
+      padding: 2em;
+      display: flex;
+      justify-content: center;
+      font-weight: 600;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
   }
 }
