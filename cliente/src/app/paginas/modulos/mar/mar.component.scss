@@ -1,3 +1,5 @@
+$mainGreen: #317e50;
+
 .pageContainer {
   display: flex;
   justify-content: center;
@@ -17,19 +19,17 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     width: 90%;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
+    justify-content: flex-start;
 
     .menuLateral {
-      background-color: #585858;
+      background-color: #0b5f38;
       width: 15%; 
       padding: 2em;
       display: flex;
       flex-direction: column;
       font-weight: 500;
       color: white; 
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       transition: width 0.3s ease-in-out; 
       
       h3 {
@@ -55,10 +55,44 @@
       }
 
       li:hover {
-        background-color: rgba(75, 72, 72, 0.698); 
+        background-color: rgba(13, 70, 22, 0.486); 
         transform: translateX(10px); 
       }
 
+    }
+
+    main{
+      padding: 2em;
+
+      input[type="file"] {
+        display: none;
+      }
+
+      label {
+        background-color: $mainGreen;
+        color: white;
+        padding: 0.9em;
+        border-radius: 8px;
+        font-size: 0.7em;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px;
+        transition: background-color 0.3s, transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+        width: 10.2em;
+      }
+  
+      label:hover {
+        background-color: #0b5f38; 
+      }
+  
+      .mainContent{
+        margin-top: 1.2em;
+        display: flex;
+        gap: 1em;
+        align-items: center;
+      }
+      
     }
 
   }
