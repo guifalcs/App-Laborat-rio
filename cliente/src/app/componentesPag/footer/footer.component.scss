@@ -1,0 +1,28 @@
+.footerContainer {
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #FCFCFC,
+    #FEFEFE,
+    #FAFAFA,
+    #FDFDFD,
+    #F8F8F8,
+    #F9F9F9
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: absolute;
+  bottom: 0;
+  padding: 1em;
+  font-size: 0.75em;
+}
+
+.footerLeft, .footerRight {
+  width: 22%;
+}
+
+.footerLeft p, .footerRight p {
+  margin: 0.3em 0;
+}
+
