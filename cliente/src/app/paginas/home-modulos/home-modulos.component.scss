@@ -1,3 +1,5 @@
+$mainGreen: #317E50;
+
 .headerContainer{
     display: block;
 }
@@ -18,21 +20,54 @@
         #F8F8F8,
         #F9F9F9
       );
-    
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       width: 80%;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 2em;
+      padding: 3em;
 
       .subtitle{
         margin-top: 1em;;
         }
 
-        .icon{
+      .icon{
             width: 6em;
         }
+
+      .modulesContainer{
+
+        padding: 2em;
+
+        .moduleContainer{
+          border: 2px solid rgba(167, 162, 162, 0.212);
+          padding: 1.5em;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          transition: 0.5s;
+
+          .moduleTitle{
+            margin-top: 1.5em;
+            transition: 0.5s;
+          }
+
+          .moduleSubTitle{
+            margin-top: 0.5em;
+          }
+
+          &:hover{
+            border: 2px solid $mainGreen;
+
+            .moduleTitle{
+              color: $mainGreen;
+            }
+          }
+        }
+
+      }
     }
 
 }
