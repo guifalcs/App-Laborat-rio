@@ -1,0 +1,25 @@
+.pageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .contentContainer {
+    background: linear-gradient(
+      to right,
+      #fcfcfc,
+      #fefefe,
+      #fafafa,
+      #fdfdfd,
+      #f8f8f8,
+      #f9f9f9
+    );
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3em;
+  }
+}
