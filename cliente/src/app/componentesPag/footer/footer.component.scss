@@ -2,12 +2,12 @@
   width: 100%;
   background: linear-gradient(
     to right,
-    #FCFCFC,
-    #FEFEFE,
-    #FAFAFA,
-    #FDFDFD,
-    #F8F8F8,
-    #F9F9F9
+    #fcfcfc,
+    #fefefe,
+    #fafafa,
+    #fdfdfd,
+    #f8f8f8,
+    #f9f9f9
   );
   display: flex;
   justify-content: space-between;
@@ -18,11 +18,12 @@
   font-size: 0.75em;
 }
 
-.footerLeft, .footerRight {
+.footerLeft,
+.footerRight {
   width: 22%;
 }
 
-.footerLeft p, .footerRight p {
+.footerLeft p,
+.footerRight p {
   margin: 0.3em 0;
 }
-
