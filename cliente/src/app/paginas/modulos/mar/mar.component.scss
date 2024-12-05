@@ -26,9 +26,18 @@
       width: 10%;
       padding: 2em;
       display: flex;
-      justify-content: center;
-      font-weight: 600;
+      flex-direction: column;
+      font-weight: 500;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+      ul{
+        margin-top: 2em;
+
+        li{
+          margin-bottom: 2em;
+        }
+      }
+
     }
 
   }
