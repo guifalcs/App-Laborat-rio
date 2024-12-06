@@ -60,18 +60,14 @@ export default class FGP{
     }
     
     getClientesPorFaixa(ano: string) {
-        // Obtém os dados dos clientes
         let clientes = this.cfa.getFaturamentoPorClienteAno(ano);
     
-        // Ordena os clientes pelo faturamento em ordem decrescente
         let rankingClientes = Object.entries(clientes)
             .map(([cliente, valor]) => ({ cliente, valor: Math.round(valor as number) }))
-            .sort((a, b) => b.valor - a.valor); // Ordenação decrescente pelo valor
+            .sort((a, b) => b.valor - a.valor); 
     
-        // Calcula o total de clientes
         let totalClientes = rankingClientes.length;
     
-        // Define as faixas como percentuais do ranking
         let faixas: any[] = [
             { faixa: '0-20%', inicio: 0, fim: Math.ceil((20 / 100) * totalClientes), clientes: [] },
             { faixa: '20-40%', inicio: Math.ceil((20 / 100) * totalClientes), fim: Math.ceil((40 / 100) * totalClientes), clientes: [] },
@@ -80,7 +76,6 @@ export default class FGP{
             { faixa: '80-100%', inicio: Math.ceil((80 / 100) * totalClientes), fim: totalClientes, clientes: [] },
         ];
     
-        // Distribui os clientes nas faixas de acordo com a posição no ranking
         rankingClientes.forEach((cliente, index) => {
             faixas.forEach((faixa) => {
                 if (index >= faixa.inicio && index < faixa.fim) {
