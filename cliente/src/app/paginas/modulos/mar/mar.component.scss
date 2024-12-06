@@ -120,6 +120,36 @@ $mainGreen: #317e50;
 
         }
 
+        .actionButtons{
+          display: flex;
+          justify-content: flex-end;
+          width: 90%;
+          gap: 0.75em;
+          margin-top: 5em;
+
+          button{
+            padding: 0.6em;
+            border-radius: 8px;
+            transition: 1s;
+          }
+
+          .generate{
+            background-color: #317e50f8;
+            color: white;
+          }
+
+          .generate:hover{
+            background-color: #0b5f38;
+            cursor: pointer;
+          }
+
+          .clean:hover{
+            background-color: rgb(209, 205, 205);
+            cursor: pointer;
+          }
+
+        }
+
 
       }
 
