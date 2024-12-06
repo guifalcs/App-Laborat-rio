@@ -15,14 +15,37 @@
     </nav>
 
     <main>
-      <h1 class="title">Título do relatório</h1>
+      <h1 class="title">Amostras, Grupos e Parâmetros</h1>
       <div class="mainContent">
 
+        <div class="reportData">
         <p>Faça upload do relátorio:</p>
         <input type="file" id="inputReport">
-        <label for="inputReport">
+        <label for="inputReport" class="labelArquivo">
         <i class="fas fa-upload"></i> Selecione um arquivo
-      </label>
+        </label>
+        </div>
+
+      <div class="aditionalData">
+        <div class="field">
+          <label for="name">Nome Funcionário:</label>
+          <input type="text" id="name">
+        </div>
+
+        <div class="field">
+          <label for="name">Setor:</label>
+          <select name="departament" id="">
+            <option value="">Diretoria</option>
+            <option value="">Administrativo</option>
+            <option value="">Financeiro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="role">Cargo:</label>
+          <input type="text" id="role">
+        </div>
+      </div>
 
       </div>
     </main>
