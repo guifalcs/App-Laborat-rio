@@ -1,7 +1,7 @@
-import fgp from "./leitores/leituraFGP";
-import cagp from "./leitores/leituraCAGP";
-import cfa from "./leitores/leituraCFA";
+import express from 'express'
+import { router } from './router'
 
-// console.log(fgp.getClientesPorFaixa('2024'))
-console.log(cagp.getAGP())
-// console.log(cfa.getTicketMedioAno('2024'))
+const app = express()
+
+app.use(express.json())
+app.use(router)
