@@ -75,6 +75,8 @@ $mainGreen: #317e50;
           display: flex;
           align-items: center;
           gap: 1em;
+          flex-wrap: wrap;
+
 
           input[type="file"] {
             display: none;
@@ -104,6 +106,7 @@ $mainGreen: #317e50;
           align-items: center;
           margin-top: 1.5em;
           gap: 2em;
+          flex-wrap: wrap;
 
           input{
             border-bottom: 1px solid black;
