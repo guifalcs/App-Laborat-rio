@@ -1,3 +1,6 @@
-import express from 'express'
+import express, {Request, Response} from 'express'
 
-export const router = express.Router()
+const router = express.Router()
+
+
+export default router
