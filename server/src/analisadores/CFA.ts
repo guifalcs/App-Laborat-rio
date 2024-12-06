@@ -8,7 +8,6 @@ export default class CFA{
 
     constructor(registros: dadosCFA[]){
 
-        //Povoa o atributo registro
         this.registros = registros;
         
     }
