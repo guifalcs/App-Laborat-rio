@@ -4,7 +4,7 @@
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx --watch src/server.ts"
+    "dev": "npx tsx watch src/server.ts"
   },
   "author": "",
   "license": "ISC",
