@@ -7,10 +7,10 @@ const conection = new WhatsAppConection();
 const mamRoutes = express.Router();
 
 mamRoutes.get("/connect", async (req: Request, res: Response) => {
-  const resultados = await conection.getConection();
+  await conection.initConection();
 
   try {
-    const qrCodeImage = await qrcode.toBuffer(conection.codigo);
+    const qrCodeImage = qrcode.toBuffer(conection.codigo);
 
     conection.client.on("ready", () => {
       res.redirect(
