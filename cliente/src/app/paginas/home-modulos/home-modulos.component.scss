@@ -38,6 +38,9 @@ $mainGreen: #317e50;
 
     .modulesContainer {
       padding: 2em;
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
 
       .moduleContainer {
         border: 2px solid rgba(167, 162, 162, 0.212);
@@ -47,6 +50,7 @@ $mainGreen: #317e50;
         align-items: center;
         flex-direction: column;
         transition: 0.5s;
+        width: 20em;
 
         .moduleTitle {
           margin-top: 1.5em;
