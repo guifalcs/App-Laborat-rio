@@ -1,5 +1,5 @@
 import { LocalAuth } from "whatsapp-web.js";
-const qrcode = require('qrcode-terminal')
+const qrcode = require("qrcode-terminal");
 
 const { Client } = require("whatsapp-web.js");
 
@@ -9,18 +9,18 @@ class WhatsAppConection {
 
   constructor() {
     const client = new Client({
-      authStrategy: new LocalAuth({clientId: "botLab"})
+      authStrategy: new LocalAuth({ clientId: "botLab" }),
     });
 
     this.client = client;
-  }                                                                                                                                                              
+  }
 
-  async getCodeConection(): Promise<string> {
+  async obterConexao(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.client.on("qr", (qr: any) => {
         this.codigo = qr;
         qrcode.generate(qr, { small: true });
-        resolve(this.codigo);  
+        resolve(this.codigo);
       });
 
       this.client.on("ready", () => {
@@ -31,12 +31,27 @@ class WhatsAppConection {
         console.log(`Cliente desconectado. Razão: ${motivo}`);
       });
 
-      this.client.initialize()
-      .catch((error: any) => {
+      this.client.initialize().catch((error: any) => {
         console.log("Erro ao iniciar o cliente:", error);
-        reject(error);  
+        reject(error);
       });
     });
+  }
+
+  async mandarMensagem(
+    numero: string,
+    nomeCliente: string,
+    dataColeta: string
+  ) {
+    try {
+      const chat = await this.client.getChatById(`${numero}@c.us`);
+      await chat.sendMessage(
+        `Fala, grande. Como vai, ${nomeCliente}. Ta lembrando do dia ${dataColeta}, né?`
+      );
+      console.log("Mensagem enviada");
+    } catch (erro) {
+      console.log("Erro ao enviar mensagem:", erro);
+    }
   }
 }
 
