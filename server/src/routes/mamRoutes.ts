@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import qrcode from "qrcode";
-import WhatsAppConection from "../MAM/config";
+import WhatsAppConection from "../MAM/conection";
 
 const conection = new WhatsAppConection();
 
@@ -20,10 +20,7 @@ mamRoutes.get("/connect", async (req: Request, res: Response) => {
 
     res.setHeader("Content-Type", "image/png");
     res.send(qrCodeImage);
-
   } catch (error) {
-
-    console.error("Erro ao gerar QR Code:", error);
     res.status(500).send("Erro ao gerar QR Code.");
   }
 });
