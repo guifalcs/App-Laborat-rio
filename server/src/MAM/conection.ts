@@ -21,7 +21,7 @@ class WhatsAppConection {
     });
   }
 
-  async getConection() {
+  async initConection() {
     await this.client.initialize();
   }
 }
