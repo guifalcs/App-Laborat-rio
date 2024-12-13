@@ -4,7 +4,7 @@
   "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsx src/server.ts"
+    "dev": "npx tsx --watch src/server.ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "g": "^2.0.1",
+    "whatsapp-web.js": "^1.26.0",
     "xlsx": "^0.18.5"
   }
 }
