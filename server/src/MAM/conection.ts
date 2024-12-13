@@ -1,4 +1,5 @@
 import { LocalAuth } from "whatsapp-web.js";
+const qrcode = require('qrcode-terminal')
 
 const { Client } = require("whatsapp-web.js");
 
@@ -8,19 +9,17 @@ class WhatsAppConection {
 
   constructor() {
     const client = new Client({
-      authStrategy: new LocalAuth({
-        clientId: "botLab",
-        dataPath: "./sessions",
-      }),
+      authStrategy: new LocalAuth({clientId: "botLab"})
     });
 
     this.client = client;
-  }
+  }                                                                                                                                                              
 
   async getCodeConection(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.client.on("qr", (qr: any) => {
         this.codigo = qr;
+        qrcode.generate(qr, { small: true });
         resolve(this.codigo);  
       });
 
@@ -32,7 +31,11 @@ class WhatsAppConection {
         console.log(`Cliente desconectado. Razão: ${motivo}`);
       });
 
-      this.client.initialize();
+      this.client.initialize()
+      .catch((error: any) => {
+        console.log("Erro ao iniciar o cliente:", error);
+        reject(error);  
+      });
     });
   }
 }
