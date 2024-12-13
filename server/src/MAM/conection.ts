@@ -15,14 +15,6 @@ class WhatsAppConection {
     });
 
     this.client = client;
-
-    this.client.on("disconnet", (motivo: any) => {
-      alert(`Usuário desconectado do WhatsApp. Razão: ${motivo}`);
-    });
-  }
-
-  async initConection() {
-    await this.client.initialize();
   }
 }
 

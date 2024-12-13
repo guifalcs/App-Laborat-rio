@@ -7,16 +7,23 @@ const conection = new WhatsAppConection();
 const mamRoutes = express.Router();
 
 mamRoutes.get("/connect", async (req: Request, res: Response) => {
-  await conection.initConection();
+
+    console.log('vai plmds')
+
+  await conection.client.initialize()
+
+  conection.client.on('qr', (qr: any) => {
+    console.log('QR RECEIVED', qr);
+  });
 
   try {
-    const qrCodeImage = qrcode.toBuffer(conection.codigo);
+    const qrCodeImage = await qrcode.toBuffer(conection.codigo);
 
-    conection.client.on("ready", () => {
-      res.redirect(
-        "https://wwebjs.dev/guide/creating-your-bot/authentication.html#remote-stores"
-      );
-    });
+    // conection.client.once("ready", () => {
+    //   res.redirect(
+    //     "https://wwebjs.dev/guide/creating-your-bot/authentication.html#remote-stores"
+    //   );
+    // });
 
     res.setHeader("Content-Type", "image/png");
     res.send(qrCodeImage);
