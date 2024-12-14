@@ -14,15 +14,6 @@ export default class CFA{
 
     getValorPorAmostra(){
 
-        // for(let registro of this.registros){
-        //     let amostra = registro["Amostra"];
-        //     let valor = registro["Total do Valor da Amostra"];
-        //     let valorPorAmostra = [amostra, valor]
-        //     yield valorPorAmostra
-            
-        //     this.valorPorAmostra.push([amostra, valor])
-        // }
-
         this.registros.map((registro: dadosCFA) => {
 
             let amostra = registro["Amostra"];
@@ -37,15 +28,6 @@ export default class CFA{
 
     getClientesAno(ano: string){
 
-        // for(let registro of this.registros){
-        //     const amostraAno = registro['Amostra'].slice(-4);
-
-        //     if(amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])){
-        //         this.clientes.push(registro["Cliente - Responsável"])
-        //         yield registro["Cliente - Responsável"];
-        //     }
-        // }
-    
         this.registros.forEach((registro: dadosCFA) => {
             const amostraAno = registro['Amostra'].slice(-4); 
     
