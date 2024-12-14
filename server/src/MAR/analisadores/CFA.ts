@@ -35,26 +35,26 @@ export default class CFA{
         return this.valorPorAmostra;
     }
 
-    *getClientesAno(ano: string){
+    getClientesAno(ano: string){
 
-        for(let registro of this.registros){
-            const amostraAno = registro['Amostra'].slice(-4);
+        // for(let registro of this.registros){
+        //     const amostraAno = registro['Amostra'].slice(-4);
 
-            if(amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])){
-                this.clientes.push(registro["Cliente - Responsável"])
-                yield registro["Cliente - Responsável"];
-            }
-        }
-    
-        // this.registros.forEach((registro: dadosCFA) => {
-        //     const amostraAno = registro['Amostra'].slice(-4); 
-    
-        //     if (amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])) {
-        //         this.clientes.push(registro["Cliente - Responsável"]);
+        //     if(amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])){
+        //         this.clientes.push(registro["Cliente - Responsável"])
+        //         yield registro["Cliente - Responsável"];
         //     }
-        // });
+        // }
     
-        // return this.clientes;
+        this.registros.forEach((registro: dadosCFA) => {
+            const amostraAno = registro['Amostra'].slice(-4); 
+    
+            if (amostraAno === ano && !this.clientes.includes(registro["Cliente - Responsável"])) {
+                this.clientes.push(registro["Cliente - Responsável"]);
+            }
+        });
+    
+        return this.clientes;
     }
 
     getTicketMedioAno(ano: string){
