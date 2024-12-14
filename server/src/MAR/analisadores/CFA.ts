@@ -14,6 +14,15 @@ export default class CFA{
 
     getValorPorAmostra(){
 
+        // for(let registro of this.registros){
+        //     let amostra = registro["Amostra"];
+        //     let valor = registro["Total do Valor da Amostra"];
+        //     let valorPorAmostra = [amostra, valor]
+        //     yield valorPorAmostra
+            
+        //     this.valorPorAmostra.push([amostra, valor])
+        // }
+
         this.registros.map((registro: dadosCFA) => {
 
             let amostra = registro["Amostra"];
