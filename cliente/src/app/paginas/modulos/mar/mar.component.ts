@@ -10,5 +10,4 @@ import { FooterComponent } from '../../../componentesPag/footer/footer.component
   styleUrl: './mar.component.scss'
 })
 export class MarComponent {
-
 }
