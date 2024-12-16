@@ -1,6 +1,5 @@
 import { LocalAuth } from "whatsapp-web.js";
-
-const { Client } = require("whatsapp-web.js");
+import { Client } from "whatsapp-web.js";
 
 class WhatsAppConection {
   codigo: any = "";
