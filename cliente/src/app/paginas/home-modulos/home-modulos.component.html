@@ -1,26 +1,34 @@
- <div class="headerContainer">
-    <app-header></app-header><br>
- </div>
+<div class="headerContainer"><app-header></app-header><br /></div>
 
 <div class="pageContainer">
-    <main class="contentContainer">
-        <h1 class="title">Seja bem-vindo!</h1>
-        <p class="subtitle">Escolha o módulo desejado</p>
+  <main class="contentContainer">
+    <h1 class="title">Seja bem-vindo!</h1>
+    <p class="subtitle">Escolha o módulo desejado</p>
+    <div class="modulesContainer">
       <a routerLink="/mar">
-        <div class="modulesContainer">
-          <div class="moduleContainer">
-            <img class="icon" src="assets/icons/iconMAR.png" alt="icone módulo análise de relatórios">
-            <h3 class="moduleTitle">MAR</h3>
-            <p class="moduleSubTitle">Módulo de análise de relatórios</p>
-          </div>
-          <div class="moduleContainer">
-            <img class="icon" src="assets/icons/iconMAM.png" alt="icone módulo análise de relatórios">
-            <h3 class="moduleTitle">MAM</h3>
-            <p class="moduleSubTitle">Módulo de automação de mensagens</p>
-          </div>
+        <div class="moduleContainer">
+          <img
+            class="icon"
+            src="assets/icons/iconMAR.png"
+            alt="icone módulo análise de relatórios"
+          />
+          <h3 class="moduleTitle">MAR</h3>
+          <p class="moduleSubTitle">Módulo de análise de relatórios</p>
         </div>
       </a>
-    </main>
+      <a routerLink="/mam">
+        <div class="moduleContainer">
+          <img
+            class="icon"
+            src="assets/icons/iconMAM.png"
+            alt="icone módulo de automação de mensagens"
+          />
+          <h3 class="moduleTitle">MAM</h3>
+          <p class="moduleSubTitle">Módulo de automação de mensagens</p>
+        </div>
+      </a>
+    </div>
+  </main>
 </div>
 
 <div class="footerContainer">
