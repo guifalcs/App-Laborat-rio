@@ -1,5 +1,4 @@
 import { LocalAuth } from "whatsapp-web.js";
-const qrcode = require("qrcode-terminal");
 
 const { Client } = require("whatsapp-web.js");
 
@@ -19,7 +18,6 @@ class WhatsAppConection {
     return new Promise((resolve, reject) => {
       this.client.on("qr", (qr: any) => {
         this.codigo = qr;
-        qrcode.generate(qr, { small: true });
         resolve(this.codigo);
       });
 
