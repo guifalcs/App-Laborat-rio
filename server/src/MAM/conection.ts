@@ -7,7 +7,7 @@ class WhatsAppConection {
 
   constructor() {
     const client = new Client({
-      authStrategy: new LocalAuth({ clientId: "botLab" }),
+      // authStrategy: new LocalAuth({ clientId: "botLab" }),
     });
 
     this.client = client;
