@@ -20,8 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-const socket = new SocketService(io);
-
+const socketService = new SocketService(io);
 const whatsAppClient = initializateWhatsApp();
 
 io.on("connection", (socket) => {
@@ -31,12 +30,34 @@ io.on("connection", (socket) => {
   } else {
     socket.emit("status", { status: "disconnected" });
   }
-});
 
+  socket.on("send_message", async (data: { numero: string, mensagem: string }) => {
+    const { numero, mensagem } = data;
+    if(!numero || !mensagem){
+      console.log("Número e mensagem precisam estar preenchidos")
+      return
+    }
+
+    if(/\D/.test(numero)){
+      console.log("O número não deve conter caracteres que não sejam numerais.")
+      return
+    }
+
+    try {
+      const chat = await whatsAppClient.getChatById(numero + '@c.us');
+      await chat.sendMessage(mensagem);
+      socketService.emitMessageSent()
+    } catch (error) {
+      console.error("Erro ao enviar mensagem para o WhatsApp:", error);
+      socketService.emitMessageNotSent()
+    }
+
+  });
+});
 
 whatsAppClient.on("qr", async (qr) => {
   try {
-    socket.emitQRCode(qr);
+    socketService.emitQRCode(qr);
   } catch (error) {
     console.error("QR Code generation error:", error);
   }
@@ -44,15 +65,15 @@ whatsAppClient.on("qr", async (qr) => {
 
 whatsAppClient.on("auth_failure", (msg) => {
   console.error("Authentication failed:", msg);
-  socket.emitDisconnected();
+  socketService.emitDisconnected();
 });
 
 whatsAppClient.on("ready", () => {
-  socket.emitReady();
+  socketService.emitReady();
 });
 
 whatsAppClient.on("disconnected", () => {
-  socket.emitDisconnected();
+  socketService.emitDisconnected();
 });
 
 whatsAppClient.initialize();

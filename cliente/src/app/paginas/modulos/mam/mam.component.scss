@@ -64,6 +64,13 @@ $mainGreen: #317e50;
     main{
       padding: 2em;
 
+      .observations{
+        font-style: italic;
+        font-size: 0.9em;
+        margin-top: 0.5em;
+        line-height: 1.5em;
+      }
+
       .mainContent{
         margin-top: 1.2em;
         display: flex;

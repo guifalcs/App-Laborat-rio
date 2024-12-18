@@ -14,4 +14,12 @@ export default class SocketService {
   emitDisconnected() {
     this.io.emit("disconnected");
   }
+
+  emitMessageSent(){
+    this.io.emit("messageSent");
+  }
+
+  emitMessageNotSent(){
+    this.io.emit("messageNotSent");
+  }
 }

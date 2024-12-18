@@ -31,21 +31,33 @@
 
     <main *ngIf="seccaoAtiva === 'seccao2'">
       <h1 class="title">Enviar mensagem</h1>
+      <div class="observations">
+        <p>*Para enviar mensagem, você precisa estar conectado ao WhatsApp.</p>
+        <p>
+          *O número deve ser exatamente como está cadastrado no WhatsApp,
+          incluindo o código de país e o DDD.
+        </p>
+        <p>
+          *O número não deve conter espaços e caracteres que não sejam numerais.
+        </p>
+      </div>
       <div class="mainContent">
         <div class="field">
-          <label for="numero">Nome do Contato: </label>
-          <input type="text" />
-        </div>
-        <div class="field">
           <label for="numero">Número: </label>
-          <input type="text" />
+          <input type="text" [(ngModel)]="numero" />
         </div>
         <div class="field">
           <label for="numero">Mensagem: </label>
-          <input type="text" />
+          <input type="text" [(ngModel)]="mensagem" />
         </div>
         <div class="field">
-          <button>Enviar</button>
+          <button (click)="enviarMensagem(numero, mensagem)">Enviar</button>
+        </div>
+        <div *ngIf="statusMensagem === 'message sent'" class="field">
+          <p>Mensagem enviada!</p>
+        </div>
+        <div *ngIf="statusMensagem === 'message not sent'" class="field">
+          <p>Não foi possível enviar a mensagem.</p>
         </div>
       </div>
     </main>

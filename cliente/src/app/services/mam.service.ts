@@ -13,6 +13,7 @@ export class MamService {
   private socket: Socket;
   private qrCode = new BehaviorSubject<string>('');
   private connectionStatus = new BehaviorSubject<string>('disconnected');
+  private messageStatus = new BehaviorSubject<string>('')
 
   constructor() {
     this.socket = io(enviroment.apiUrl);
@@ -39,6 +40,14 @@ export class MamService {
       this.connectionStatus.next(res.status);
       this.qrCode.next('');
     });
+
+    this.socket.on('messageSent', () => {
+      this.messageStatus.next('message sent')
+    })
+
+    this.socket.on('messageNotSent', () => {
+      this.messageStatus.next('message not sent')
+    })
   }
 
   getQRCode(): Observable<string> {
@@ -49,7 +58,15 @@ export class MamService {
     return this.connectionStatus.asObservable();
   }
 
-  public generateQRCode(data: string): string {
+  getMessageStatus(): Observable<string> {
+    return this.messageStatus.asObservable();
+  }
+
+  sendMessage(numero: string, mensagem: string) {
+    this.socket.emit('send_message', { numero, mensagem });
+  }
+
+  generateQRCode(data: string): string {
     let qrCodeDataUrl: string = '';
     QRCode.toDataURL(data, { errorCorrectionLevel: 'H' }, (err, url) => {
       if (err) {
