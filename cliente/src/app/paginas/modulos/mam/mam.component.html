@@ -1,26 +1,24 @@
-<div class="headerContainer">
-  <app-header></app-header><br>
-</div>
+<div class="headerContainer"><app-header></app-header><br /></div>
 
 <div class="pageContainer">
   <div class="contentContainer">
-
     <nav class="menuLateral">
       <h3>Opções:</h3>
       <ul>
-        <li>Conectar o bot ao WhatsApp</li>
+        <li (click)="mudarSeccao('seccao1')">Conectar o bot ao WhatsApp</li>
+        <li (click)="mudarSeccao('seccao2')">Enviar mensagem</li>
       </ul>
     </nav>
 
-    <main>
+    <main *ngIf="seccaoAtiva === 'seccao1'">
       <h1 class="title">Conectar o bot ao WhatsApp</h1>
       <div class="mainContent">
-        <div *ngIf="!qrcode && status === 'disconnected'" >
+        <div *ngIf="!qrcode && status === 'disconnected'">
           <div class="spinner"></div>
         </div>
         <div *ngIf="qrcode">
-          <p>Escaneie o código para conectar o bot ao WhatsApp: </p>
-          <img [src]="qrcode" alt="QR Code">
+          <p>Escaneie o código para conectar o bot ao WhatsApp:</p>
+          <img [src]="qrcode" alt="QR Code" />
         </div>
         <div *ngIf="status == 'connected'">
           <p>O bot está conectado ao WhatsApp</p>
@@ -31,10 +29,29 @@
       </div>
     </main>
 
+    <main *ngIf="seccaoAtiva === 'seccao2'">
+      <h1 class="title">Enviar mensagem</h1>
+      <div class="mainContent">
+        <div class="field">
+          <label for="numero">Nome do Contato: </label>
+          <input type="text" />
+        </div>
+        <div class="field">
+          <label for="numero">Número: </label>
+          <input type="text" />
+        </div>
+        <div class="field">
+          <label for="numero">Mensagem: </label>
+          <input type="text" />
+        </div>
+        <div class="field">
+          <button>Enviar</button>
+        </div>
+      </div>
+    </main>
   </div>
 </div>
 
 <div class="footerContainer">
   <app-footer></app-footer>
 </div>
-

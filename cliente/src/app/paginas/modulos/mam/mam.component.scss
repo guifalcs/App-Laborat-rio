@@ -71,6 +71,28 @@ $mainGreen: #317e50;
         align-items: flex-start;
         flex-direction: column;
 
+        input{
+          border-bottom: 1px solid black;
+          outline: none;
+          margin-left: 0.5em;
+        }
+
+        button{
+          display: flex;
+          justify-content: flex-end;
+          padding: 0.5em 1em;
+          border-radius: 8px;
+          transition: 1s;
+          background-color: #317e50;
+          color: white;
+          font-weight: 600;
+
+          &:hover{
+            cursor: pointer;
+            background-color: #0b5f38;
+          }
+        }
+
         .spinner {
           width: 48px;
           height: 48px;

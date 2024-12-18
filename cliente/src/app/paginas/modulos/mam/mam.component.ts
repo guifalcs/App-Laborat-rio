@@ -15,6 +15,7 @@ export class MamComponent implements OnInit {
 
   qrcode: string = '';
   status: string = '';
+  seccaoAtiva: string = 'seccao1';
 
   constructor(private mamService: MamService){}
 
@@ -26,6 +27,10 @@ export class MamComponent implements OnInit {
     this.mamService.getConnectionStatus().subscribe(status => {
       this.status = status
     })
+  }
+
+  mudarSeccao(seccao: string){
+    this.seccaoAtiva = seccao
   }
 
 }
