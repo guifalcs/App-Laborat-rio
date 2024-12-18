@@ -15,11 +15,18 @@
     <main>
       <h1 class="title">Conectar o bot ao WhatsApp</h1>
       <div class="mainContent">
-        <div *ngIf="!qrcode">
+        <div *ngIf="!qrcode && status === 'disconnected'" >
           <div class="spinner"></div>
         </div>
         <div *ngIf="qrcode">
+          <p>Escaneie o código para conectar o bot ao WhatsApp: </p>
           <img [src]="qrcode" alt="QR Code">
+        </div>
+        <div *ngIf="status == 'connected'">
+          <p>O bot está conectado ao WhatsApp</p>
+        </div>
+        <div *ngIf="status == 'disconnected'">
+          <p>Não há conexão do bot com o WhatsApp</p>
         </div>
       </div>
     </main>

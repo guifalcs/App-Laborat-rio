@@ -13,18 +13,18 @@ import { CommonModule } from '@angular/common';
 })
 export class MamComponent implements OnInit {
 
-  qrcode: string = ''
+  qrcode: string = '';
+  status: string = '';
 
   constructor(private mamService: MamService){}
 
-  ngOnInit(){this.obterCodigo()}
+  ngOnInit(){
+    this.mamService.getQRCode().subscribe(qrcode => {
+      this.qrcode = this.mamService.generateQRCode(qrcode)
+    })
 
-  obterCodigo(){
-    this.mamService.conectar().subscribe({
-      next: (codigo) => {
-        this.qrcode = codigo
-      },
-      error: (error) => {"Observador do mam service emitiu um erro: " + console.log(error)}
+    this.mamService.getConnectionStatus().subscribe(status => {
+      this.status = status
     })
   }
 

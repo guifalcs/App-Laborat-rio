@@ -1,9 +1,8 @@
-import { enviroment } from './../../environments/enviroment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs';
 import * as QRCode from 'qrcode'
+import { io, Socket } from 'socket.io-client';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { enviroment } from '../../environments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +10,46 @@ import * as QRCode from 'qrcode'
 
 export class MamService {
 
-  constructor(private httpClient: HttpClient) {}
+  private socket: Socket;
+  private qrCode = new BehaviorSubject<string>('');
+  private connectionStatus = new BehaviorSubject<string>('disconnected');
 
-   conectar(): Observable<any>{
-    return this.httpClient.get(enviroment.apiUrl + '/mam/connect').pipe(
-      map((data: any) => { return this.generateQRCode(data)}),
-      catchError(this.handleError)
-    )
+  constructor() {
+    this.socket = io(enviroment.apiUrl);
+    this.setupSocketListeners();
   }
 
-  private generateQRCode(data: string): string {
+  private setupSocketListeners(): void {
+    this.socket.on('qr', (qrCode: string) => {
+      this.qrCode.next(qrCode);
+      this.connectionStatus.next('waiting');
+    });
+
+    this.socket.on('ready', () => {
+      this.connectionStatus.next('connected');
+      this.qrCode.next('');
+    });
+
+    this.socket.on('disconnected', () => {
+      this.connectionStatus.next('disconnected');
+      this.qrCode.next('');
+    });
+
+    this.socket.on('status', (res) => {
+      this.connectionStatus.next(res.status);
+      this.qrCode.next('');
+    });
+  }
+
+  getQRCode(): Observable<string> {
+    return this.qrCode.asObservable();
+  }
+
+  getConnectionStatus(): Observable<string> {
+    return this.connectionStatus.asObservable();
+  }
+
+  public generateQRCode(data: string): string {
     let qrCodeDataUrl: string = '';
     QRCode.toDataURL(data, { errorCorrectionLevel: 'H' }, (err, url) => {
       if (err) {
@@ -32,13 +61,5 @@ export class MamService {
     });
     return qrCodeDataUrl;
   }
-
-  private handleError(error: any): Observable<never> {
-    console.error('Erro na requisição:', error);
-    return throwError(() => new Error('Erro ao conectar com o serviço.'))
-
-  }
-
-
 
 }
