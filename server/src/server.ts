@@ -5,6 +5,7 @@ import http from "http";
 import { Server } from "socket.io";
 import initializateWhatsApp from "./MAM/conection";
 import SocketService from "./MAM/socket";
+import { WAState } from "whatsapp-web.js";
 
 const app = express();
 const port = process.env.SERVER_PORT || 8081;
@@ -75,6 +76,12 @@ whatsAppClient.on("ready", () => {
 whatsAppClient.on("disconnected", () => {
   socketService.emitDisconnected();
 });
+
+setInterval(() => {
+  if (!whatsAppClient.info || !whatsAppClient.info.wid) {
+      socketService.emitDisconnected()
+  }
+}, 60000);
 
 whatsAppClient.initialize();
 
