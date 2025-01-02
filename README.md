@@ -4,6 +4,6 @@ Essa aplicação é um sistema, em desenvolvimento, com objetivos de suprir dema
 
 Estão sendo feitas features para análises de relatórios e para automatização de processos. O sistema se divide em módulos que são responsáveis por funcionalidades específicas da plataforma.
 
-Prévia do protótipo:
+Prévia:
 
 ![image](https://github.com/user-attachments/assets/c1db8777-1896-4f5c-b188-f2ae0fd35db1)
